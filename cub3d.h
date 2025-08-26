@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/08/26 02:05:07 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/08/26 19:19:48 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,17 @@
 # include <string.h>
 # include "MLX42/MLX42.h"
 
+typedef struct s_aff
+{
+	mlx_image_t	*img;
+}	t_aff;
+
 typedef struct s_data
 {
 	char	**map;
 	int		y;
 	mlx_t	*mlx;
+	t_aff	windows;	
 }	t_data;
 
 t_data	*open_map(void);
