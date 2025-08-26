@@ -3,14 +3,9 @@ BONUS = so_long_bonus
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I$(SUBDIR) $(HEADERS)
 
-SRC = main.c GNL/get_next_line.c GNL/get_next_line_utils.c open_map.c init_map.c
+SRC = main.c GNL/get_next_line.c GNL/get_next_line_utils.c open_map.c init_map.c utils.c
 
-SRC_BONUS = parsing.c check_map_path.c\
-GNL/get_next_line.c GNL/get_next_line_utils.c\
-Bonus/so_long_bonus.c Bonus/game_start_bonus.c Bonus/utils_bonus.c\
-Bonus/check_map_bonus.c Bonus/check_ennemy.c Bonus/init_map_bonus.c\
-Bonus/error_bonus.c Bonus/ennemy_move.c Bonus/build_map_bonus.c\
-Bonus/collec_anims.c
+SRC_BONUS = parsing.c
 
 OBJ = $(SRC:.c=.o)
 

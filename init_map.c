@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 01:55:04 by mlavry            #+#    #+#             */
-/*   Updated: 2025/08/26 19:57:45 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/08/26 21:39:24 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	set_background(void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
-	draw_background(data->windows.img);
+	draw_background(data->window.img);
+	draw_fake_wall(data->window.img);
 }
 
 void	set_image(t_data *data)
@@ -55,8 +56,8 @@ void	set_image(t_data *data)
 
 	mlx_get_monitor_size(0, &win_w, &win_h);
 	mlx_set_window_size(data->mlx, (int32_t)win_w, (int32_t)win_h);
-	data->windows.img = mlx_new_image(data->mlx, win_w, win_h);
-	mlx_image_to_window(data->mlx, data->windows.img, 0, 0);
+	data->window.img = mlx_new_image(data->mlx, win_w, win_h);
+	mlx_image_to_window(data->mlx, data->window.img, 0, 0);
 }
 
 void	launch_game(t_data *data)
