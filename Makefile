@@ -3,7 +3,7 @@ BONUS = so_long_bonus
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I$(SUBDIR) $(HEADERS)
 
-SRC = main.c GNL/get_next_line.c GNL/get_next_line_utils.c open_map.c
+SRC = main.c GNL/get_next_line.c GNL/get_next_line_utils.c open_map.c init_map.c
 
 SRC_BONUS = parsing.c check_map_path.c\
 GNL/get_next_line.c GNL/get_next_line_utils.c\

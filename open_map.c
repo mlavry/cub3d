@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 17:46:45 by mlavry            #+#    #+#             */
-/*   Updated: 2025/08/25 18:19:41 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/08/26 01:58:24 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	init_empty(t_data *data)
 {
 	data->map = NULL;
 	data->y = 0;
+	data->mlx = NULL;
 }
 
 static int	count_lines(char *map_path)
@@ -86,6 +87,7 @@ void	print_tab(t_data *data)
 	int	i;
 
 	i = 0;
+	printf("Taille de la map : %d\n", data->y);
 	while (i < data->y)
 	{
 		printf("%s", data->map[i]);
