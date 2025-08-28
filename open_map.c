@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 17:46:45 by mlavry            #+#    #+#             */
-/*   Updated: 2025/08/26 01:58:24 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/08/28 23:58:20 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,17 @@ char	**create_tab(t_data *data, char *map_path)
 	return (close(fd), data->map);
 }
 
-void	print_tab(t_data *data)
+void	print_map(t_data *data)
 {
 	int	i;
 
 	i = 0;
 	printf("Taille de la map : %d\n", data->y);
+	printf("\n------------MAP-------------\n\n");
 	while (i < data->y)
 	{
 		printf("%s", data->map[i]);
 		i++;
 	}
+	printf("\n");
 }

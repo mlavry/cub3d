@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 01:55:04 by mlavry            #+#    #+#             */
-/*   Updated: 2025/08/26 21:39:24 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/08/29 00:02:37 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ void	set_image(t_data *data)
 	int32_t	win_h;
 
 	mlx_get_monitor_size(0, &win_w, &win_h);
+	data->monitor_h = (int)win_h;
+	data->monitor_w = (int)win_w;
+	printf("\nMonitor W : %d\nMonitor H : %d\n", data->monitor_w, data->monitor_h);
 	mlx_set_window_size(data->mlx, (int32_t)win_w, (int32_t)win_h);
 	data->window.img = mlx_new_image(data->mlx, win_w, win_h);
 	mlx_image_to_window(data->mlx, data->window.img, 0, 0);

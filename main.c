@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:01:28 by mlavry            #+#    #+#             */
-/*   Updated: 2025/08/26 02:06:10 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/08/28 23:58:38 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int	main(int argc, char **argv)
 		return (0);
 	if (!create_tab(data, argv[1]))
 		return (0);
-	print_tab(data);
+	print_map(data);
 	launch_game(data);
 }
