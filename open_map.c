@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 17:46:45 by mlavry            #+#    #+#             */
-/*   Updated: 2025/08/28 23:58:20 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/08/29 01:35:42 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_empty(t_data *data)
 {
 	data->map = NULL;
-	data->y = 0;
+	data->tiles_y = 0;
 	data->mlx = NULL;
 }
 
@@ -63,8 +63,8 @@ char	**create_tab(t_data *data, char *map_path)
 	fd = open(map_path, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
-	data->y = count_lines(map_path);
-	while (i < data->y)
+	data->tiles_y = count_lines(map_path);
+	while (i < data->tiles_y)
 	{
 		line = get_next_line(fd);
 		if (!line)
@@ -87,12 +87,13 @@ void	print_map(t_data *data)
 	int	i;
 
 	i = 0;
-	printf("Taille de la map : %d\n", data->y);
+	printf("Taille de la map : %d\n", data->tiles_y);
 	printf("\n------------MAP-------------\n\n");
-	while (i < data->y)
+	while (i < data->tiles_y)
 	{
 		printf("%s", data->map[i]);
 		i++;
 	}
 	printf("\n");
+	count_tile_in_map(data);
 }
