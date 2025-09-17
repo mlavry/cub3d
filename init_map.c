@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 01:55:04 by mlavry            #+#    #+#             */
-/*   Updated: 2025/08/29 03:22:36 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/09/16 20:21:43 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,6 @@ void	draw_background(mlx_image_t *img)
 	}
 }
 
-void	try_rect(t_data *data)
-{
-	t_rect		rect;
-	mlx_image_t	*img;
-
-	img = mlx_new_image(data->mlx, (int32_t)data->monitor_w,
-			(int32_t)data->monitor_h);
-	mlx_image_to_window(data->mlx, img, 0, 0);
-	rect.x = 1;
-	rect.y = 1;
-	rect.size_x = data->monitor_w / 4 - 1;
-	rect.size_y = data->monitor_h / 4 - 1;
-	fill_rect(data, img, rect, C_WHITE);
-}
-
 void	set_background(void *param)
 {
 	t_data	*data;
@@ -58,7 +43,6 @@ void	set_background(void *param)
 	draw_background(data->window.img);
 	draw_fake_wall(data->window.img);
 	draw_minimap(data);
-	//try_rect(data);
 }
 
 void	set_image(t_data *data)

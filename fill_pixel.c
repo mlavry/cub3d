@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 00:17:14 by mlavry            #+#    #+#             */
-/*   Updated: 2025/08/29 03:23:02 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/09/17 01:29:54 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,34 @@ void	fill_rect(t_data *data, mlx_image_t *img, t_rect dim, uint32_t color)
 		}
 		dim.y++;
 		dim.x = x;
+	}
+}
+
+void	fill_circle(t_data *data, t_circle circle, uint32_t color)
+{
+	int	x;
+	int	y;
+	int	px;
+	int	py;
+
+	y = -circle.r;
+	while (y <= circle.r)
+	{
+		x = -circle.r;
+		while (x <= circle.r)
+		{
+			if (x * x + y * y <= circle.r * circle.r)
+			{
+				px = circle.px + x;
+				py = circle.py + y;
+				if (px >= 0 && py >= 0
+					&& px < (int)data->minimap.img->width && py
+					< (int)data->minimap.img->height)
+					mlx_put_pixel(data->minimap.img,
+						(uint32_t)px, (uint32_t)py, color);
+			}
+			x++;
+		}
+		y++;
 	}
 }

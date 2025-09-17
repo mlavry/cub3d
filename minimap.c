@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 01:15:27 by mlavry            #+#    #+#             */
-/*   Updated: 2025/08/29 03:29:00 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/09/17 01:49:56 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,35 @@ void	fill_background_minimap(t_data *data)
 	fill_rect(data, data->minimap.img, rect, C_MINI_BG);
 }
 
+void	paint_player_on_minimap(t_data *data, int x, int y, uint32_t color)
+{
+	t_circle	circle;
+	t_rect		rect;
+
+	rect.x = data->minimap.margin + x * data->minimap.tile;
+	rect.y = data->minimap.margin + y * data->minimap.tile;
+	rect.size_x = data->minimap.tile;
+	rect.size_y = data->minimap.tile;
+	fill_rect(data, data->minimap.img, rect, C_GREY);
+	circle.px = data->minimap.margin + x
+		* data->minimap.tile + data->minimap.tile / 2;
+	circle.py = data->minimap.margin + y
+		* data->minimap.tile + data->minimap.tile / 2;
+	circle.r = data->minimap.tile / 3;
+	fill_circle(data, circle, color);
+}
+
 void	paint_minimap(t_data *data, char c, int x, int y)
 {
 	t_rect		rect;
 	uint32_t	color;
 
+	if (c == 'P')
+	{
+		color = C_RED;
+		paint_player_on_minimap(data, x, y, color);
+		return ;
+	}
 	if (c == '1')
 		color = C_WHITE;
 	else if (c == '0')

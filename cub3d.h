@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/08/29 03:21:35 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/09/17 00:26:51 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define C_GREY 0x808080FFu
 # define C_MINI_VOID   0x00000000u
 # define C_MINI_BG     0x00000080u 
+# define C_RED 0xFF0000FFu
+
 
 # include "Libft/libft.h"
 # include "GNL/get_next_line.h"
@@ -51,6 +53,13 @@ typedef struct s_rect
 	int	size_x;
 	int	size_y;
 }	t_rect;
+
+typedef struct s_circle
+{
+	int	px;
+	int	py;
+	int	r;
+}	t_circle;
 
 typedef struct s_minimap
 {
@@ -96,5 +105,6 @@ int		line_len_no_nl(const char *s);
 void	count_tile_in_map(t_data *data);
 void	draw_minimap(t_data *data);
 void	minimap_init(t_data *data);
+void	fill_circle(t_data *data, t_circle circle, uint32_t color);
 
 #endif
