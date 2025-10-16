@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/09/17 00:26:51 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/16 22:08:11 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # include <stdio.h>
 # include <string.h>
 # include "MLX42/MLX42.h"
+# include <math.h>
 
 typedef struct s_point
 {
@@ -81,6 +82,8 @@ typedef struct s_player
 	double	pos_y;
 	double	dir_x;
 	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 }	t_player;
 
 typedef struct s_data
@@ -92,6 +95,7 @@ typedef struct s_data
 	int			tiles_x;
 	mlx_t		*mlx;
 	t_window	window;
+	t_player	player;
 	t_minimap	minimap;
 }	t_data;
 
@@ -106,5 +110,10 @@ void	count_tile_in_map(t_data *data);
 void	draw_minimap(t_data *data);
 void	minimap_init(t_data *data);
 void	fill_circle(t_data *data, t_circle circle, uint32_t color);
+void	set_camera_plane(t_player *player);
+void	init_player(t_data *data);
+void	init_player_dir(t_data *data, int x, int y);
+
+void	print_player_info(t_data *data);
 
 #endif

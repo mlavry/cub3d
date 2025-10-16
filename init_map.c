@@ -6,11 +6,38 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 01:55:04 by mlavry            #+#    #+#             */
-/*   Updated: 2025/09/16 20:21:43 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/16 22:08:52 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	init_player(t_data *data)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] == 'N' || data->map[y][x] == 'S'
+				|| data->map[y][x] == 'E' || data->map[y][x] == 'W')
+			{
+				data->player.pos_x = x + 0.5;
+				data->player.pos_y = y + 0.5;
+				init_player_dir(data, x, y);
+				set_camera_plane(&data->player);
+				print_player_info(data);
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
+}
 
 void	draw_background(mlx_image_t *img)
 {
@@ -41,7 +68,6 @@ void	set_background(void *param)
 
 	data = (t_data *)param;
 	draw_background(data->window.img);
-	draw_fake_wall(data->window.img);
 	draw_minimap(data);
 }
 
@@ -67,6 +93,7 @@ void	launch_game(t_data *data)
 		return ;
 	set_image(data);
 	minimap_init(data);
+	init_player(data);
 	mlx_loop_hook(data->mlx, set_background, data);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);

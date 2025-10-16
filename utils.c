@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 21:20:08 by mlavry            #+#    #+#             */
-/*   Updated: 2025/08/29 03:00:31 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/15 20:49:43 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,29 @@ void	count_tile_in_map(t_data *data)
 	data->tiles_x = max_x;
 	printf("Taille en x : %d\n", data->tiles_x);
 	printf("Taille en y : %d\n", data->tiles_y);
+}
+
+void	init_player_dir(t_data *data, int x, int y)
+{
+	if (data->map[y][x] == 'N')
+	{
+		data->player.dir_x = 0;
+		data->player.dir_y = -1;
+	}
+	else if (data->map[y][x] == 'S')
+	{
+		data->player.dir_x = 0;
+		data->player.dir_y = 1;
+	}
+	else if (data->map[y][x] == 'E')
+	{
+		data->player.dir_x = 1;
+		data->player.dir_y = 0;
+	}
+	else if (data->map[y][x] == 'W')
+	{
+		data->player.dir_x = -1;
+		data->player.dir_y = 0;
+	}
+	data->map[y][x] = '0';
 }
