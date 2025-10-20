@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 01:15:27 by mlavry            #+#    #+#             */
-/*   Updated: 2025/09/17 01:49:56 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/17 12:20:56 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	paint_minimap(t_data *data, char c, int x, int y)
 	t_rect		rect;
 	uint32_t	color;
 
-	if (c == 'P')
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
 		color = C_RED;
 		paint_player_on_minimap(data, x, y, color);

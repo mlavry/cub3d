@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 01:55:04 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/16 22:08:52 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/20 17:34:19 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	launch_game(t_data *data)
 	set_image(data);
 	minimap_init(data);
 	init_player(data);
-	mlx_loop_hook(data->mlx, set_background, data);
+	mlx_loop_hook(data->mlx, render_frame_basic, data);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
 }

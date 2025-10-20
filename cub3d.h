@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/16 22:08:11 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/20 17:34:14 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define C_MINI_VOID   0x00000000u
 # define C_MINI_BG     0x00000080u 
 # define C_RED 0xFF0000FFu
+# define COL_WALL_DARK 0xFFBFBFBFu
 
 
 # include "Libft/libft.h"
@@ -46,6 +47,28 @@ typedef struct s_dpoint
 	double	x;
 	double	y;
 }	t_dpoint;
+
+typedef struct s_dda
+{
+	int		mx;
+	int		my;
+	int		stepx;
+	int		stepy;
+	double	ddx;
+	double	ddy;
+	double	sdx;
+	double	sdy;
+}	t_dda;
+
+typedef struct s_column
+{
+	double	rdx;
+	double	rdy;
+	double	dist;
+	int		side;
+	int		y0;
+	int		y1;
+}	t_column;
 
 typedef struct s_rect
 {
@@ -113,6 +136,13 @@ void	fill_circle(t_data *data, t_circle circle, uint32_t color);
 void	set_camera_plane(t_player *player);
 void	init_player(t_data *data);
 void	init_player_dir(t_data *data, int x, int y);
+void	set_background(void *param);
+
+void	dda_init_axis(double *delta, double dir);
+char	map_at(t_data *data, int x, int y);
+double	dda_first_hit(t_data *data, double rdx, double rdy, int *side_hit);
+void	draw_vline(mlx_image_t *img, int x, int y0, int y1, uint32_t color);
+void	render_frame_basic(void *param);
 
 void	print_player_info(t_data *data);
 

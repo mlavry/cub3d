@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 21:56:03 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/16 22:17:16 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/20 17:35:45 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 char	map_at(t_data *data, int x, int y)
 {
-	int	len;
+	int		len;
+	char	c;
 
 	if (y < 0 || y >= data->tiles_y || !data->map[y])
 		return ('1');
 	len = line_len_no_nl(data->map[y]);
 	if (x < 0 || x >= len)
 		return ('1');
-	return (data->map[y][x]);
+	c = data->map[y][x];
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		c = '0';
+	return (c);
 }
 
 void	set_camera_plane(t_player *player)
@@ -43,4 +47,12 @@ void	print_player_info(t_data *data)
 	printf("Camera plane : (%.2f, %.2f)\n",
 		data->player.plane_x, data->player.plane_y);
 	printf("=============================\n\n");
+}
+
+void	dda_init_axis(double *delta, double dir)
+{
+	if (dir == 0.0)
+		*delta = 1e30;
+	else
+		*delta = fabs(1.0 / dir);
 }

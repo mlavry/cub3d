@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 21:20:08 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/15 20:49:43 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/17 12:42:52 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_vline(mlx_image_t *img, int x, int y0, int y1, uint32_t color)
 	if (y0 < 0)
 		y0 = 0;
 	if (y1 >= (int)img->height)
-		y1 = img->height;
+		y1 = img->height - 1;
 	y = y0;
 	while (y <= y1)
 	{
@@ -95,5 +95,5 @@ void	init_player_dir(t_data *data, int x, int y)
 		data->player.dir_x = -1;
 		data->player.dir_y = 0;
 	}
-	data->map[y][x] = '0';
+	//data->map[y][x] = '0';
 }
