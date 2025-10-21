@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 21:56:03 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/20 17:35:45 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/21 19:43:40 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,24 @@ void	dda_init_axis(double *delta, double dir)
 		*delta = 1e30;
 	else
 		*delta = fabs(1.0 / dir);
+}
+
+double	get_dt_seconds(t_data *data)
+{
+	struct timeval	tv;
+	long			now_us;
+	double			dt;
+
+	gettimeofday(&tv, NULL);
+	now_us = (tv.tv_sec * 1000000L) + tv.tv_usec;
+	if (data->last_us == 0)
+	{
+		data->last_us = now_us;
+		return (0.0);
+	}
+	dt = (double)(now_us - data->last_us) / 1000000.0;
+	data->last_us = now_us;
+	if (dt > 0.05)
+		dt = 0.05;
+	return (dt);
 }

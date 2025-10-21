@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 16:39:37 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/20 17:37:44 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/21 21:02:41 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	render_frame_basic(void *param)
 	t_data		*data;
 
 	data = (t_data *)param;
+	handle_movement(data);
 	set_background(data);
 	x = 0;
 	while (x < data->monitor_w)

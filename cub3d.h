@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/20 17:34:14 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/21 21:02:30 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # include <string.h>
 # include "MLX42/MLX42.h"
 # include <math.h>
+# include <sys/time.h>
 
 typedef struct s_point
 {
@@ -116,6 +117,7 @@ typedef struct s_data
 	int			monitor_w;
 	int			tiles_y;
 	int			tiles_x;
+	long		last_us;
 	mlx_t		*mlx;
 	t_window	window;
 	t_player	player;
@@ -143,6 +145,8 @@ char	map_at(t_data *data, int x, int y);
 double	dda_first_hit(t_data *data, double rdx, double rdy, int *side_hit);
 void	draw_vline(mlx_image_t *img, int x, int y0, int y1, uint32_t color);
 void	render_frame_basic(void *param);
+double	get_dt_seconds(t_data *data);
+void	handle_movement(t_data *d);
 
 void	print_player_info(t_data *data);
 
