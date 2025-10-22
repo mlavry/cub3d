@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/21 21:02:30 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/22 12:55:23 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,22 @@ typedef struct s_player
 	double	plane_y;
 }	t_player;
 
+typedef struct s_params
+{
+	int		no;
+	int		so;
+	int		we;
+	int		ea;
+	int		f;
+	int		c;
+	char	*no_path;
+	char	*so_path;
+	char	*we_path;
+	char	*ea_path;
+	int		f_rgb[3];
+	int		c_rgb[3];
+}	t_params;
+
 typedef struct s_data
 {
 	char		**map;
@@ -117,11 +133,15 @@ typedef struct s_data
 	int			monitor_w;
 	int			tiles_y;
 	int			tiles_x;
+	//void		*mlx;
+	int			count;
+	int			max_len;
 	long		last_us;
 	mlx_t		*mlx;
 	t_window	window;
 	t_player	player;
 	t_minimap	minimap;
+	t_params	*param;
 }	t_data;
 
 t_data	*open_map(void);
@@ -149,5 +169,22 @@ double	get_dt_seconds(t_data *data);
 void	handle_movement(t_data *d);
 
 void	print_player_info(t_data *data);
+
+int		parser(t_data *data, int argc, char **argv);
+
+int		is_cub(char *argv);
+int		is_param(t_params *param, char *line);
+char	**readmap(t_data *game, char *file);
+int		is_map_line(char *line);
+int		all_param_ok(t_params *param);
+int		check_param(t_data *game, char *file);
+int		parse_colour(t_data *game, char *line);
+int		parse_texture(t_data *game, char *line);
+int		valid_map(t_data *game);
+int		is_close(t_data *game);
+int		check_holes(t_data *game);
+char	*whitespace(char *line);
+int		ft_strcmp(char *s1, char *s2);
+int		count_lines(char *map_path);
 
 #endif

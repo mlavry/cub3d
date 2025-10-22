@@ -4,7 +4,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I$(SUBDIR) $(HEADERS)
 
 SRC = main.c GNL/get_next_line.c GNL/get_next_line_utils.c open_map.c init_map.c utils.c fill_pixel.c \
-minimap.c dda.c utils2.c rendu.c move.c
+minimap.c dda.c utils2.c rendu.c move.c \
+mapping.c parser.c parsing.c readmap.c
 
 SRC_BONUS = parsing.c
 

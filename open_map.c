@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 17:46:45 by mlavry            #+#    #+#             */
-/*   Updated: 2025/08/29 01:35:42 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/22 12:55:30 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_empty(t_data *data)
 	data->mlx = NULL;
 }
 
-static int	count_lines(char *map_path)
+int	count_lines(char *map_path)
 {
 	char	*line;
 	int		count;
