@@ -3,9 +3,10 @@ BONUS = so_long_bonus
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I$(SUBDIR) $(HEADERS)
 
-SRC = main.c GNL/get_next_line.c GNL/get_next_line_utils.c open_map.c init_map.c utils.c fill_pixel.c \
-minimap.c dda.c utils2.c rendu.c move.c texturing.c\
-mapping.c parser.c parsing.c readmap.c
+SRC = main.c open_map.c utils.c utils2.c GNL/get_next_line.c GNL/get_next_line_utils.c\
+Parsing/mapping.c Parsing/parser.c Parsing/parsing.c Parsing/readmap.c\
+Render_3D/dda.c Render_3D/fill_pixel.c Render_3D/init_map.c Render_3D/minimap.c\
+Render_3D/move.c Render_3D/render.c Render_3D/texturing.c
 
 SRC_BONUS = parsing.c
 

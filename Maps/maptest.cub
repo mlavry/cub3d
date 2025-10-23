@@ -1,7 +1,7 @@
-NO ./north.png
-SO ./south.png
-WE ./west.png
-EA ./east.png
+NO ./Textures/north.png
+SO ./Textures/south.png
+WE ./Textures/west.png
+EA ./Textures/east.png
 F 0,0,0
 C 0,0,0
         1111111111111111111111111

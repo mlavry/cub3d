@@ -6,11 +6,11 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:42:09 by aboutale          #+#    #+#             */
-/*   Updated: 2025/10/23 19:44:53 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 20:57:13 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int	countline(char *file)
 {

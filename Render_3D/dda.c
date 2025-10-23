@@ -6,11 +6,11 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 20:10:24 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/20 17:42:50 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 20:57:21 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static void	dda_init(t_data *data, t_dda *a, double rdx, double rdy)
 {

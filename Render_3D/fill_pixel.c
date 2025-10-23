@@ -6,11 +6,11 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 00:17:14 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/23 18:02:06 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 20:57:24 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	fill_rect(t_data *data, mlx_image_t *img, t_rect dim, uint32_t color)
 {

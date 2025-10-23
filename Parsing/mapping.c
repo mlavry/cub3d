@@ -6,11 +6,11 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 21:58:04 by aboutale          #+#    #+#             */
-/*   Updated: 2025/10/23 19:46:08 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 20:56:44 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int valid_map(t_data *game)
 {

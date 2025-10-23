@@ -6,11 +6,11 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 21:19:30 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/22 21:58:39 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 20:57:52 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 mlx_texture_t	*pick_wall_texture(t_data *d, int side, double rdx, double rdy)
 {

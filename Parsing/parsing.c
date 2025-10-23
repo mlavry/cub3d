@@ -6,11 +6,11 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 17:12:45 by aboutale          #+#    #+#             */
-/*   Updated: 2025/10/22 22:49:25 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 20:57:10 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int	is_cub(char *filename)
 {

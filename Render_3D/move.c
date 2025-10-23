@@ -6,11 +6,11 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 19:21:06 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/23 19:54:08 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 20:57:44 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static int	is_wall(t_data *data, int mx, int my)
 {
