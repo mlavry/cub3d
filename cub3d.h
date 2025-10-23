@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/23 18:12:33 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 19:59:51 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # define C_RED 0xFF0000FFu
 # define COL_WALL_DARK 0xFFBFBFBFu
 # define C_DARK 0x000000FF
-
 
 # include "Libft/libft.h"
 # include "GNL/get_next_line.h"
@@ -154,50 +153,49 @@ typedef struct s_data
 	t_params	param;
 }	t_data;
 
-t_data	*open_map(void);
-char	**create_tab(t_data *data, char *map_path);
-void	print_map(t_data *data);
-void	launch_game(t_data *data);
-void	draw_fake_wall(mlx_image_t *img);
-void	fill_rect(t_data *data, mlx_image_t *img, t_rect dim, uint32_t color);
-int		line_len_no_nl(const char *s);
-void	count_tile_in_map(t_data *data);
-void	draw_minimap(t_data *data);
-void	minimap_init(t_data *data);
-void	fill_circle(t_data *data, t_circle circle, uint32_t color);
-void	set_camera_plane(t_player *player);
-void	init_player(t_data *data);
-void	init_player_dir(t_data *data, int x, int y);
-void	set_background(void *param);
+t_data		*open_map(void);
+char		**create_tab(t_data *data, char *map_path);
+void		print_map(t_data *data);
+void		launch_game(t_data *data);
+void		fill_rect(t_data *data, mlx_image_t *img, t_rect dim,
+				uint32_t color);
+int			line_len_no_nl(const char *s);
+void		count_tile_in_map(t_data *data);
+void		draw_minimap(t_data *data);
+void		minimap_init(t_data *data);
+void		fill_circle(t_data *data, t_circle circle, uint32_t color);
+void		set_camera_plane(t_player *player);
+void		init_player(t_data *data);
+void		init_player_dir(t_data *data, int x, int y);
+void		set_background(void *param);
 
-void	dda_init_axis(double *delta, double dir);
-char	map_at(t_data *data, int x, int y);
-double	dda_first_hit(t_data *data, double rdx, double rdy, int *side_hit);
-void	draw_vline(mlx_image_t *img, int x, int y0, int y1, uint32_t color);
-void	render_frame_basic(void *param);
-double	get_dt_seconds(t_data *data);
-void	handle_movement(t_data *d);
+void		dda_init_axis(double *delta, double dir);
+char		map_at(t_data *data, int x, int y);
+double		dda_first_hit(t_data *data, double rdx, double rdy, int *side_hit);
+void		render_frame_basic(void *param);
+double		get_dt_seconds(t_data *data);
+void		handle_movement(t_data *d);
 
-void	print_player_info(t_data *data);
+void		print_player_info(t_data *data);
 
-int		parser(t_data *data, int argc, char **argv);
+int			parser(t_data *data, int argc, char **argv);
 
-int		is_cub(char *argv);
-int		is_param(t_params *param, char *line);
-char	**readmap(t_data *game, char *file);
-int		is_map_line(char *line);
-int		all_param_ok(t_params *param);
-int		check_param(t_data *game, char *file);
-int		parse_colour(t_data *game, char *line);
-int		parse_texture(t_data *game, char *line);
-int		valid_map(t_data *game);
-int		is_close(t_data *game);
-int		check_holes(t_data *game);
-char	*whitespace(char *line);
-int		ft_strcmp(char *s1, char *s2);
-int		count_lines(char *map_path);
-int		init_textures(t_data *data);
-void	draw_textured_column(t_data *d, t_column *c);
+int			is_cub(char *argv);
+int			is_param(t_params *param, char *line);
+char		**readmap(t_data *game, char *file);
+int			is_map_line(char *line);
+int			all_param_ok(t_params *param);
+int			check_param(t_data *game, char *file);
+int			parse_colour(t_data *game, char *line);
+int			parse_texture(t_data *game, char *line);
+int			valid_map(t_data *game);
+int			is_close(t_data *game);
+int			check_holes(t_data *game);
+char		*whitespace(char *line);
+int			ft_strcmp(char *s1, char *s2);
+int			count_lines(char *map_path);
+int			init_textures(t_data *data);
+void		draw_textured_column(t_data *d, t_column *c);
 uint32_t	rgb_to_u32(int r, int g, int b);
 
 #endif

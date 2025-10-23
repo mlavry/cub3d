@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:01:28 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/22 22:42:20 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 19:49:50 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,6 @@ int	main(int argc, char **argv)
 		perror("calloc");
 		return (1);
 	}
-	/*if (argc != 2)
-	{
-		printf("Invalid numer of args\n");
-		return (0);
-	}
-	data = open_map();
-	if (!data)
-		return (0);
-	if (!create_tab(data, argv[1]))
-		return (0);
-	print_map(data);*/
 	if (parser(data, argc, argv))
 		return (0);
 	data->tiles_y = data->count;

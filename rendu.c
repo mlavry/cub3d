@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 16:39:37 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/23 17:37:53 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 19:54:52 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	render_frame_basic(void *param)
 		compute_ray_dir(data, x, &c.rdx, &c.rdy);
 		c.dist = dda_first_hit(data, c.rdx, c.rdy, &c.side);
 		project_column(data, c.dist, &c.y0, &c.y1);
-		//draw_vline(data->window.img, x, c.y0, c.y1, get_wall_color(c.side));
 		draw_textured_column(data, &c);
 		x++;
 	}
@@ -58,12 +57,10 @@ void	render_frame_basic(void *param)
 
 int	init_textures(t_data *data)
 {
-	printf("%s\n", data->param.no_path);
 	data->textures.north = mlx_load_png(data->param.no_path);
 	data->textures.south = mlx_load_png(data->param.so_path);
 	data->textures.east = mlx_load_png(data->param.ea_path);
 	data->textures.west = mlx_load_png(data->param.we_path);
-
 	if (!data->textures.north || !data->textures.south || !data->textures.east
 		|| !data->textures.west)
 	{

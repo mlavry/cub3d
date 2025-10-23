@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:42:09 by aboutale          #+#    #+#             */
-/*   Updated: 2025/10/21 21:38:15 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 19:44:53 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	countline(char *file)
 	line = get_next_line(fd);
 	while (line)
 	{
-		printf("Ligne lue: %s", line);
+		//printf("Ligne lue: %s", line);
 		trimmed = whitespace(line);
 		if (*trimmed != '\0' && is_map_line(trimmed))
 			count++;
@@ -65,7 +65,7 @@ static char	*skip_to_map(int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-		printf("Skip: '%s'", line);
+		//printf("Skip: '%s'", line);
 		trimmed = whitespace(line);
 		if (*trimmed != '\0' && is_map_line(trimmed))
 			return (line);

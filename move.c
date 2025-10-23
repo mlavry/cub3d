@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 19:21:06 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/21 21:09:47 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 19:54:08 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	handle_movement(t_data *d)
 	dt = get_dt_seconds(d);
 	speed = 4.0 * dt;
 	rot = 2.2 * dt;
-
 	if (mlx_is_key_down(d->mlx, MLX_KEY_LEFT_SHIFT))
 		speed *= 1.8;
 	if (mlx_is_key_down(d->mlx, MLX_KEY_W))

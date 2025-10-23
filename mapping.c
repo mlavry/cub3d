@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 21:58:04 by aboutale          #+#    #+#             */
-/*   Updated: 2025/10/22 22:47:43 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 19:46:08 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ int is_close(t_data *game)
 
 	i = 1;
 	j = 0;
-	printf("Debug: map has %d lines, max_len = %d\n", game->count, game->max_len);
-	for (int i = 0; i < game->count; i++)
+	//printf("Debug: map has %d lines, max_len = %d\n", game->count, game->max_len);
+	/*for (int i = 0; i < game->count; i++)
 	{
 		printf("Line %d (len %zu): '%s'\n", i, ft_strlen(game->map[i]), game->map[i]);
-	}
+	}*/
 	while (j < game->max_len)
 	{
 		if (game->map[0][j] != '1' && game->map[0][j] != ' ')

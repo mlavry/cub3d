@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 01:55:04 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/23 18:15:07 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 19:52:36 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	init_player(t_data *data)
 				data->player.pos_y = y + 0.5;
 				init_player_dir(data, x, y);
 				set_camera_plane(&data->player);
-				print_player_info(data);
 				return ;
 			}
 			x++;
@@ -70,7 +69,7 @@ void	set_background(void *param)
 
 	data = (t_data *)param;
 	draw_background(data, data->window.img);
-	draw_minimap(data);
+	//draw_minimap(data);
 }
 
 void	set_image(t_data *data)
@@ -81,7 +80,6 @@ void	set_image(t_data *data)
 	mlx_get_monitor_size(0, &win_w, &win_h);
 	data->monitor_h = (int)win_h;
 	data->monitor_w = (int)win_w;
-	printf("\nMonitor W : %d\nMonitor H : %d\n", data->monitor_w, data->monitor_h);
 	mlx_set_window_size(data->mlx, (int32_t)win_w, (int32_t)win_h);
 	data->window.img = mlx_new_image(data->mlx, win_w, win_h);
 	mlx_image_to_window(data->mlx, data->window.img, 0, 0);
@@ -91,12 +89,11 @@ void	launch_game(t_data *data)
 {
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
-	printf("%s\n", data->param.no_path);
 	if (!data->mlx)
 		return ;
 	set_image(data);
 	init_textures(data);
-	minimap_init(data);
+	//minimap_init(data);
 	init_player(data);
 	mlx_loop_hook(data->mlx, render_frame_basic, data);
 	mlx_loop(data->mlx);
