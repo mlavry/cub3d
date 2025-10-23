@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 19:22:28 by aboutale          #+#    #+#             */
-/*   Updated: 2025/10/21 22:01:47 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/22 22:48:42 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ int	parse_colour(t_data *game, char *line)
 		return (write(2, "Error: invalid RGB value\n", 25), 0);
 	if (line[0] == 'F')
 	{
-		game->param->f_rgb[0] = rgb[0];
-		game->param->f_rgb[1] = rgb[1];
-		game->param->f_rgb[2] = rgb[2];
+		game->param.f_rgb[0] = rgb[0];
+		game->param.f_rgb[1] = rgb[1];
+		game->param.f_rgb[2] = rgb[2];
 	}
 	else if (line[0] == 'C')
 	{
-		game->param->c_rgb[0] = rgb[0];
-		game->param->c_rgb[1] = rgb[1];
-		game->param->c_rgb[2] = rgb[2];
+		game->param.c_rgb[0] = rgb[0];
+		game->param.c_rgb[1] = rgb[1];
+		game->param.c_rgb[2] = rgb[2];
 	}
 	return (1);
 }
@@ -72,9 +72,9 @@ int	check_texture(char *path)
 	int	fd;
 
 	len = ft_strlen(path);
-	if ((len < 4) || (ft_strcmp(path + len - 4, ".xpm") != 0))
+	if ((len < 4) || (ft_strcmp(path + len - 4, ".png") != 0))
 	{
-		write(2, "Error : format must be .xpm\n", 28);
+		write(2, "Error : format must be .png\n", 28);
 		return (0);
 	}
 	fd = open(path, O_RDONLY);
@@ -104,12 +104,12 @@ int	parse_texture(t_data *game, char *line)
 	if (newline)
 		*newline = '\0';
 	if (!ft_strncmp(line, "NO", 2))
-		game->param->no_path = path;
+		game->param.no_path = path;
 	else if (!ft_strncmp(line, "SO", 2))
-		game->param->so_path = path;
+		game->param.so_path = path;
 	else if (!ft_strncmp(line, "WE", 2))
-		game->param->we_path = path;
+		game->param.we_path = path;
 	else if (!ft_strncmp(line, "EA", 2))
-		game->param->ea_path = path;
-	return (1);//check_texture(path));
+		game->param.ea_path = path;
+	return (check_texture(path));
 }

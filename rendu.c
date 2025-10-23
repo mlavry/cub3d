@@ -6,18 +6,11 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 16:39:37 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/21 21:02:41 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 17:37:53 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static uint32_t	get_wall_color(int side)
-{
-	if (side == 1)
-		return (C_WHITE);
-	return (C_RED);
-}
 
 static void	compute_ray_dir(t_data *data, int x, double *rdx, double *rdy)
 {
@@ -53,10 +46,29 @@ void	render_frame_basic(void *param)
 	x = 0;
 	while (x < data->monitor_w)
 	{
+		c.x = x;
 		compute_ray_dir(data, x, &c.rdx, &c.rdy);
 		c.dist = dda_first_hit(data, c.rdx, c.rdy, &c.side);
 		project_column(data, c.dist, &c.y0, &c.y1);
-		draw_vline(data->window.img, x, c.y0, c.y1, get_wall_color(c.side));
+		//draw_vline(data->window.img, x, c.y0, c.y1, get_wall_color(c.side));
+		draw_textured_column(data, &c);
 		x++;
 	}
+}
+
+int	init_textures(t_data *data)
+{
+	printf("%s\n", data->param.no_path);
+	data->textures.north = mlx_load_png(data->param.no_path);
+	data->textures.south = mlx_load_png(data->param.so_path);
+	data->textures.east = mlx_load_png(data->param.ea_path);
+	data->textures.west = mlx_load_png(data->param.we_path);
+
+	if (!data->textures.north || !data->textures.south || !data->textures.east
+		|| !data->textures.west)
+	{
+		printf("Error when loading textures\n");
+		exit (1);
+	}
+	return (0);
 }

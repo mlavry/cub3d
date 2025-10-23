@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 00:17:14 by mlavry            #+#    #+#             */
-/*   Updated: 2025/09/17 01:29:54 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 18:02:06 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,24 @@ void	fill_circle(t_data *data, t_circle circle, uint32_t color)
 		}
 		y++;
 	}
+}
+
+uint32_t	rgb_to_u32(int r, int g, int b)
+{
+	if (r < 0)
+		r = 0;
+	if (r > 255)
+		r = 255;
+	if (g < 0)
+		g = 0;
+	if (g > 255)
+		g = 255;
+	if (b < 0)
+		b = 0;
+	if (b > 255)
+		b = 255;
+	return (((uint32_t)r << 24)
+		| ((uint32_t)g << 16)
+		| ((uint32_t)b << 8)
+		| 0xFF);
 }

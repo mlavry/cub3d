@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 17:12:45 by aboutale          #+#    #+#             */
-/*   Updated: 2025/10/21 21:37:54 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/22 22:49:25 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	check_duplicate(t_data *game, char *trimmed)
 {
 	int	extra;
 
-	extra = is_param(game->param, trimmed);
+	extra = is_param(&game->param, trimmed);
 	if (extra == 1)
 	{
 		return (write(2, "Error: duplicate parameter\n", 27), 0);
@@ -125,7 +125,7 @@ static int handle_param_line(t_data *game, char *line)
 	}
 	else if (is_map_line(trimmed))
 	{
-		if (!all_param_ok(game->param))
+		if (!all_param_ok(&game->param))
 			return (write(2, "Error: missing parameters\n", 26), 0);
 		return (2);
 	}

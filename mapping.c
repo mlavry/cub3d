@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 21:58:04 by aboutale          #+#    #+#             */
-/*   Updated: 2025/10/22 13:24:27 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/22 22:47:43 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int	parser(t_data *data, int argc, char **argv)
 	t_params param = {0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, {0, 0, 0},
 	{0, 0, 0}};
 
-	data->param = &param;
+	data->param = param;
 	data->map = NULL;
 	if (argc != 2)
 		return (write(2, "Error usage : ./cub3D map.cub\n", 30), 1);

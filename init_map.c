@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 01:55:04 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/20 17:34:19 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 18:15:07 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_player(t_data *data)
 	}
 }
 
-void	draw_background(mlx_image_t *img)
+void	draw_background(t_data *data, mlx_image_t *img)
 {
 	int			y;
 	int			x;
@@ -49,9 +49,11 @@ void	draw_background(mlx_image_t *img)
 	while (y < (int)img->height)
 	{
 		if (y < (int)img->height / 2)
-			color = C_TOP;
+			color = rgb_to_u32(data->param.c_rgb[0], data->param.c_rgb[1],
+					data->param.c_rgb[2]);
 		else
-			color = C_FLOOR;
+			color = rgb_to_u32(data->param.f_rgb[0], data->param.f_rgb[1],
+					data->param.f_rgb[2]);
 		x = 0;
 		while (x < (int)img->width)
 		{
@@ -67,7 +69,7 @@ void	set_background(void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
-	draw_background(data->window.img);
+	draw_background(data, data->window.img);
 	draw_minimap(data);
 }
 
@@ -89,9 +91,11 @@ void	launch_game(t_data *data)
 {
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
+	printf("%s\n", data->param.no_path);
 	if (!data->mlx)
 		return ;
 	set_image(data);
+	init_textures(data);
 	minimap_init(data);
 	init_player(data);
 	mlx_loop_hook(data->mlx, render_frame_basic, data);

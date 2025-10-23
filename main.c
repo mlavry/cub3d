@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:01:28 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/22 12:58:20 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/22 22:42:20 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(int argc, char **argv)
 	print_map(data);*/
 	if (parser(data, argc, argv))
 		return (0);
-	data->tiles_y = count_lines(argv[1]);
-	count_tile_in_map(data);
+	data->tiles_y = data->count;
+	data->tiles_x = data->max_len;
 	launch_game(data);
 }

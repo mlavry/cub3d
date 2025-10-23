@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/22 12:55:23 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/23 18:12:33 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define C_MINI_BG     0x00000080u 
 # define C_RED 0xFF0000FFu
 # define COL_WALL_DARK 0xFFBFBFBFu
+# define C_DARK 0x000000FF
 
 
 # include "Libft/libft.h"
@@ -63,6 +64,7 @@ typedef struct s_dda
 
 typedef struct s_column
 {
+	int		x;
 	double	rdx;
 	double	rdy;
 	double	dist;
@@ -126,6 +128,14 @@ typedef struct s_params
 	int		c_rgb[3];
 }	t_params;
 
+typedef struct s_textures
+{
+	mlx_texture_t	*north;
+	mlx_texture_t	*south;
+	mlx_texture_t	*east;
+	mlx_texture_t	*west;
+}	t_textures;
+
 typedef struct s_data
 {
 	char		**map;
@@ -133,15 +143,15 @@ typedef struct s_data
 	int			monitor_w;
 	int			tiles_y;
 	int			tiles_x;
-	//void		*mlx;
 	int			count;
 	int			max_len;
 	long		last_us;
 	mlx_t		*mlx;
 	t_window	window;
 	t_player	player;
+	t_textures	textures;
 	t_minimap	minimap;
-	t_params	*param;
+	t_params	param;
 }	t_data;
 
 t_data	*open_map(void);
@@ -186,5 +196,8 @@ int		check_holes(t_data *game);
 char	*whitespace(char *line);
 int		ft_strcmp(char *s1, char *s2);
 int		count_lines(char *map_path);
+int		init_textures(t_data *data);
+void	draw_textured_column(t_data *d, t_column *c);
+uint32_t	rgb_to_u32(int r, int g, int b);
 
 #endif
