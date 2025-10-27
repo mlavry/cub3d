@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 01:55:04 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/23 20:57:36 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/27 23:44:37 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	set_background(void *param)
 
 	data = (t_data *)param;
 	draw_background(data, data->window.img);
-	//draw_minimap(data);
 }
 
 void	set_image(t_data *data)
@@ -93,7 +92,6 @@ void	launch_game(t_data *data)
 		return ;
 	set_image(data);
 	init_textures(data);
-	//minimap_init(data);
 	init_player(data);
 	mlx_loop_hook(data->mlx, render_frame_basic, data);
 	mlx_loop(data->mlx);

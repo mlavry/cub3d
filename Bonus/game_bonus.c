@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   game_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/20 16:39:37 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/27 11:34:41 by mlavry           ###   ########.fr       */
+/*   Created: 2025/10/27 11:23:01 by mlavry            #+#    #+#             */
+/*   Updated: 2025/10/27 23:53:46 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	project_column(t_data *data, double dist, int *y0, int *y1)
 	*y1 = line_h / 2 + mid;
 }
 
-void	render_frame_basic(void *param)
+void	render_frame_bonus(void *param)
 {
 	int			x;
 	t_column	c;
@@ -53,19 +53,21 @@ void	render_frame_basic(void *param)
 		draw_textured_column(data, &c);
 		x++;
 	}
+	handle_minimap_keys(data);
+	minimap_draw_rot_fov(data);
 }
 
-int	init_textures(t_data *data)
+void	launch_game_bonus(t_data *data)
 {
-	data->textures.north = mlx_load_png(data->param.no_path);
-	data->textures.south = mlx_load_png(data->param.so_path);
-	data->textures.east = mlx_load_png(data->param.ea_path);
-	data->textures.west = mlx_load_png(data->param.we_path);
-	if (!data->textures.north || !data->textures.south || !data->textures.east
-		|| !data->textures.west)
-	{
-		printf("Error when loading textures\n");
-		exit (1);
-	}
-	return (0);
+	mlx_set_setting(MLX_MAXIMIZED, true);
+	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
+	if (!data->mlx)
+		return ;
+	set_image(data);
+	init_textures(data);
+	minimap_init(data);
+	init_player(data);
+	mlx_loop_hook(data->mlx, render_frame_bonus, data);
+	mlx_loop(data->mlx);
+	mlx_terminate(data->mlx);
 }

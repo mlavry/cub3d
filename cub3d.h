@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/23 19:59:51 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/28 00:54:57 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,10 @@ typedef struct s_minimap
 	int			margin;
 	int			wpx;
 	int			hpx;
+	int			show;
+	double		zoom;
+	int			radius;
+	double		fov_deg;
 }	t_minimap;
 
 typedef struct s_window
@@ -197,5 +201,19 @@ int			count_lines(char *map_path);
 int			init_textures(t_data *data);
 void		draw_textured_column(t_data *d, t_column *c);
 uint32_t	rgb_to_u32(int r, int g, int b);
+void		set_image(t_data *data);
+
+t_dpoint	minimap_px_to_world_rot(t_data *data, int px, int py);
+void		launch_game_bonus(t_data *data);
+t_dpoint	rotate_local_to_world_delta(t_data *data, t_dpoint loc);
+t_dpoint	pixels_to_local_tiles(t_data *data, int px, int py);
+double		player_angle_rad(t_player *p);
+void		minimap_clear_disk_and_player(t_data *data);
+void		minimap_draw_fov_cone(t_data *d);
+void		handle_minimap_keys(t_data *data);
+void		minimap_draw_rot_fov(t_data *d);
+uint32_t	minimap_color_for_tile(t_data *data, double wx, double wy);
+int			mm_compute_radius(t_minimap *m);
+int			in_bounds(t_data *d, int tx, int ty);
 
 #endif
