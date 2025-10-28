@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 21:01:39 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/28 02:46:13 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/28 19:52:31 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,16 @@ t_dpoint	pixels_to_local_tiles(t_data *data, int px, int py)
 t_dpoint	rotate_local_to_world_delta(t_data *d, t_dpoint loc)
 {
 	t_dpoint	dr;
-	double		fx = d->player.dir_x;
-	double		fy = d->player.dir_y;
-	double		rx =  -fy;
-	double		ry = fx;
+	t_dpoint	f;
+	double		rx;
+	double		ry;
 
-	// dr = loc.x * right + loc.y * forward
-	dr.x = loc.x * rx + loc.y * fx;
-	dr.y = loc.x * ry + loc.y * fy;
+	f.x = d->player.dir_x;
+	f.y = d->player.dir_y;
+	rx = -f.y;
+	ry = f.x;
+	dr.x = loc.x * rx + loc.y * f.x;
+	dr.y = loc.x * ry + loc.y * f.y;
 	return (dr);
 }
 
