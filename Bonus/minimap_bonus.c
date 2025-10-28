@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 01:15:27 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/28 00:46:23 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/28 01:09:50 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	minimap_clear(t_data *data)
 /*Équation d’un cercle : 
 𝑥2 + 𝑦2 ≤ 𝑟2 
 Si le point (dx, dy) respecte cette équation → il est dans le disque.*/
-static t_point	minimap_draw_disk(t_data *data)
+void	minimap_draw_disk(t_data *data)
 {
 	t_point	c;
 	int		r;
@@ -79,16 +79,15 @@ static t_point	minimap_draw_disk(t_data *data)
 		}
 		dy++;
 	}
-	return (c);
 }
 
-static void	draw_player_center(t_data *data, t_point c)
+void	draw_player_center(t_data *data, t_point c)
 {
 	int	r;
 	int	x;
 	int	y;
 
-	r = data->minimap.tile / 3;
+	r = mm_player_px_radius(data);
 	y = -r;
 	while (y <= r)
 	{
@@ -105,9 +104,6 @@ static void	draw_player_center(t_data *data, t_point c)
 
 void	minimap_clear_disk_and_player(t_data *data)
 {
-	t_point	c;
-
 	minimap_clear(data);
-	c = minimap_draw_disk(data);
-	draw_player_center(data, c);
+	minimap_draw_disk(data);
 }

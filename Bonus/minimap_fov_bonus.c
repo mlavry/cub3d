@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 23:45:43 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/28 00:57:48 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/28 01:34:23 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,14 @@ static void	mm_scan_world(t_data *d)
 // Orchestration : clear+disk, remplissage monde, overlay joueur+FOV
 void	minimap_draw_rot_fov(t_data *d)
 {
+	t_point	c;
+
 	if (!d->minimap.img || !d->minimap.show)
 		return ;
 	minimap_clear_disk_and_player(d);
 	mm_scan_world(d);
-	minimap_draw_fov_cone(d);
+	//minimap_draw_fov_cone(d);
+	c.x = d->minimap.wpx / 2;
+	c.y = d->minimap.hpx / 2;
+	draw_player_center(d, c);
 }

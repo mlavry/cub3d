@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 20:26:25 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/28 00:22:17 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/28 01:58:28 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	handle_minimap_keys(t_data *data)
 	}
 }
 
-t_dpoint	minimap_px_to_world_rot(t_data *data, int px, int py)
+/*t_dpoint	minimap_px_to_world_rot(t_data *data, int px, int py)
 {
 	t_dpoint	loc;
 	t_dpoint	dr;
@@ -53,37 +53,33 @@ t_dpoint	minimap_px_to_world_rot(t_data *data, int px, int py)
 	w.x = data->player.pos_x + dr.x;
 	w.y = data->player.pos_y + dr.y;
 	return (w);
-}
+}*/
 
-static void	minimap_draw_ray_edge(t_data *d, double a)
+// Renvoie la position "monde" correspondant au pixel minimap (px,py)
+// en tenant compte de la rotation: haut minimap = direction joueur.
+t_dpoint	minimap_px_to_world_rot(t_data *d, int px, int py)
 {
-	int		i;
-	int		x;
-	int		y;
-	double	ca;
-	double	sa;
+	t_dpoint	w;
+	double		scale;
+	double		lx;
+	double		ly;
+	double		fx;
+	double		fy;
+	double		rx;
+	double		ry;
+	int			cx;
+	int			cy;
 
-	ca = cos(a);
-	sa = sin(a);
-	i = 0;
-	while (i <= d->minimap.radius)
-	{
-		x = d->minimap.wpx / 2 + (int)(ca * i);
-		y = d->minimap.hpx / 2 - (int)(sa * i);
-		if (x >= 0 && y >= 0
-			&& x < (int)d->minimap.wpx && y < (int)d->minimap.hpx)
-			mlx_put_pixel(d->minimap.img, x, y, C_WHITE);
-		i++;
-	}
-}
-
-void	minimap_draw_fov_cone(t_data *d)
-{
-	double	ang;
-	double	half;
-
-	ang = player_angle_rad(&d->player);
-	half = (d->minimap.fov_deg * M_PI / 180.0) / 2.0;
-	minimap_draw_ray_edge(d, ang - half);
-	minimap_draw_ray_edge(d, ang + half);
+	cx = d->minimap.wpx / 2;
+	cy = d->minimap.hpx / 2;
+	scale = (double)d->minimap.tile * d->minimap.zoom;
+	lx = ((double)px - (double)cx) / scale;
+	ly = -(((double)py - (double)cy) / scale);
+	fx = d->player.dir_x;
+	fy = d->player.dir_y;
+	rx = fy;
+	ry = -fx;
+	w.x = d->player.pos_x + lx * rx + ly * fx;
+	w.y = d->player.pos_y + lx * ry + ly * fy;
+	return (w);
 }

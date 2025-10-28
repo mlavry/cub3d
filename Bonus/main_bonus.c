@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:22:05 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/27 11:27:55 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/28 01:09:05 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@ int	ft_strcmp(char *s1, char *s2)
 		i++;
 	}
 	return (s1[i] - s2[i]);
+}
+
+int	mm_player_px_radius(t_data *d)
+{
+	double	r;
+
+	r = 3.0 * d->minimap.zoom;
+	if (r < 2.0)
+		r = 2.0;
+	if (r > (double)d->minimap.radius / 6.0)
+		r = (double)d->minimap.radius / 6.0;
+	return ((int)r);
 }
 
 int	main(int argc, char **argv)
