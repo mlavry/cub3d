@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/28 01:43:32 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/28 20:52:31 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,5 +217,6 @@ int			in_bounds(t_data *d, int tx, int ty);
 void		draw_player_center(t_data *data, t_point c);
 int			mm_player_px_radius(t_data *d);
 t_dpoint	minimap_px_to_world_rot(t_data *d, int px, int py);
+void		minimap_draw_circle_border(t_data *d, uint32_t col);
 
 #endif
