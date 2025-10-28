@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 20:26:25 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/28 01:58:28 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/28 02:44:00 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	handle_minimap_keys(t_data *data)
 	}
 }
 
-/*t_dpoint	minimap_px_to_world_rot(t_data *data, int px, int py)
+t_dpoint	minimap_px_to_world_rot(t_data *data, int px, int py)
 {
 	t_dpoint	loc;
 	t_dpoint	dr;
@@ -53,11 +53,11 @@ void	handle_minimap_keys(t_data *data)
 	w.x = data->player.pos_x + dr.x;
 	w.y = data->player.pos_y + dr.y;
 	return (w);
-}*/
+}
 
 // Renvoie la position "monde" correspondant au pixel minimap (px,py)
 // en tenant compte de la rotation: haut minimap = direction joueur.
-t_dpoint	minimap_px_to_world_rot(t_data *d, int px, int py)
+/*t_dpoint	minimap_px_to_world_rot(t_data *d, int px, int py)
 {
 	t_dpoint	w;
 	double		scale;
@@ -82,4 +82,4 @@ t_dpoint	minimap_px_to_world_rot(t_data *d, int px, int py)
 	w.x = d->player.pos_x + lx * rx + ly * fx;
 	w.y = d->player.pos_y + lx * ry + ly * fy;
 	return (w);
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 21:01:39 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/28 00:55:57 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/28 02:46:13 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_dpoint	pixels_to_local_tiles(t_data *data, int px, int py)
 // Orienter le vecteur local loc dans le repère du monde 
 	//en le tournant de l’angle du joueur,
 	//pour que “le haut minimap” corresponde à “l’avant du joueur”.
-t_dpoint	rotate_local_to_world_delta(t_data *data, t_dpoint loc)
+/*t_dpoint	rotate_local_to_world_delta(t_data *data, t_dpoint loc)
 {
 	double		c;
 	double		s;
@@ -57,6 +57,20 @@ t_dpoint	rotate_local_to_world_delta(t_data *data, t_dpoint loc)
 	rot.x = loc.x * c - loc.y * s;
 	rot.y = loc.x * s + loc.y * c;
 	return (rot);
+}*/
+
+t_dpoint	rotate_local_to_world_delta(t_data *d, t_dpoint loc)
+{
+	t_dpoint	dr;
+	double		fx = d->player.dir_x;
+	double		fy = d->player.dir_y;
+	double		rx =  -fy;
+	double		ry = fx;
+
+	// dr = loc.x * right + loc.y * forward
+	dr.x = loc.x * rx + loc.y * fx;
+	dr.y = loc.x * ry + loc.y * fy;
+	return (dr);
 }
 
 //floor sert a arrondir vers le bas pour savoir la case dans laquelle se 
