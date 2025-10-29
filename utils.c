@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 21:20:08 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/29 19:24:07 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/29 23:48:32 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,4 @@ void	init_player_dir(t_data *data, int x, int y)
 		data->player.dir_x = 1;
 		data->player.dir_y = 0;
 	}
-}
-
-void	handle_sensi_right_mouse(t_data *data)
-{
-	static int	right_br = 0;
-
-	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT_BRACKET))
-	{
-		if (!right_br)
-		{
-			data->mouse.sens += 0.0002;
-			if (data->mouse.sens > 0.02)
-				data->mouse.sens = 0.02;
-			right_br = 1;
-		}
-	}
-	else
-		right_br = 0;
 }

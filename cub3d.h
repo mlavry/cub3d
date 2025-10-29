@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/29 19:25:36 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/29 21:49:49 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,14 @@ typedef struct s_textures
 	mlx_texture_t	*west;
 }	t_textures;
 
+typedef struct s_doors
+{
+	int		x;
+	int		y;
+	double	open;
+	int		moving;
+}	t_doors;
+
 typedef struct s_data
 {
 	char		**map;
@@ -155,6 +163,7 @@ typedef struct s_data
 	int			count;
 	int			max_len;
 	long		last_us;
+	int			doors_count;
 	mlx_t		*mlx;
 	t_window	window;
 	t_player	player;
@@ -162,6 +171,7 @@ typedef struct s_data
 	t_minimap	minimap;
 	t_params	param;
 	t_mouse		mouse;
+	t_doors		*doors;
 }	t_data;
 
 t_data		*open_map(void);
@@ -231,5 +241,9 @@ void		init_mouse(t_data *data);
 void		handle_mouse(t_data *data);
 void		handle_movement_bonus(t_data *d);
 void		handle_sensi_right_mouse(t_data *data);
+
+int			parser_bonus(t_data *data, int argc, char **argv);
+char		**readmap_bonus(t_data *game, char *file);
+int 		valid_map_bonus(t_data *game);
 
 #endif

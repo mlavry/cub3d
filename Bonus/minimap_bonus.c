@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 01:15:27 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/28 22:27:14 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/29 23:46:39 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	minimap_init(t_data *data)
 {
 	data->minimap.tile = 16;
 	data->minimap.margin = 8;
-	data->minimap.wpx = 200;
-	data->minimap.hpx = 200;
+	data->minimap.wpx = data->monitor_w / 4;
+	data->minimap.hpx = data->monitor_h / 4;
 	data->minimap.img = mlx_new_image(data->mlx,
 			data->minimap.wpx, data->minimap.hpx);
 	if (!data->minimap.img)
