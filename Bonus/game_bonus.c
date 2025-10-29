@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:23:01 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/27 23:53:46 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/28 22:23:45 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	render_frame_bonus(void *param)
 	t_data		*data;
 
 	data = (t_data *)param;
-	handle_movement(data);
+	handle_movement_bonus(data);
 	set_background(data);
 	x = 0;
 	while (x < data->monitor_w)
@@ -66,6 +66,7 @@ void	launch_game_bonus(t_data *data)
 	set_image(data);
 	init_textures(data);
 	minimap_init(data);
+	init_mouse(data);
 	init_player(data);
 	mlx_loop_hook(data->mlx, render_frame_bonus, data);
 	mlx_loop(data->mlx);

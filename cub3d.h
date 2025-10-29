@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/28 20:52:31 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/29 19:25:36 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,12 @@ typedef struct s_minimap
 	double		fov_deg;
 }	t_minimap;
 
+typedef struct s_mouse
+{
+	double	sens;
+	bool	lock;
+}	t_mouse;
+
 typedef struct s_window
 {
 	mlx_image_t	*img;
@@ -155,6 +161,7 @@ typedef struct s_data
 	t_textures	textures;
 	t_minimap	minimap;
 	t_params	param;
+	t_mouse		mouse;
 }	t_data;
 
 t_data		*open_map(void);
@@ -165,7 +172,6 @@ void		fill_rect(t_data *data, mlx_image_t *img, t_rect dim,
 				uint32_t color);
 int			line_len_no_nl(const char *s);
 void		count_tile_in_map(t_data *data);
-void		draw_minimap(t_data *data);
 void		minimap_init(t_data *data);
 void		fill_circle(t_data *data, t_circle circle, uint32_t color);
 void		set_camera_plane(t_player *player);
@@ -202,6 +208,8 @@ int			init_textures(t_data *data);
 void		draw_textured_column(t_data *d, t_column *c);
 uint32_t	rgb_to_u32(int r, int g, int b);
 void		set_image(t_data *data);
+void		rotate_player(t_player *p, double ang);
+void		try_move(t_data *d, double dx, double dy);
 
 t_dpoint	minimap_px_to_world_rot(t_data *data, int px, int py);
 void		launch_game_bonus(t_data *data);
@@ -218,5 +226,10 @@ void		draw_player_center(t_data *data, t_point c);
 int			mm_player_px_radius(t_data *d);
 t_dpoint	minimap_px_to_world_rot(t_data *d, int px, int py);
 void		minimap_draw_circle_border(t_data *d, uint32_t col);
+
+void		init_mouse(t_data *data);
+void		handle_mouse(t_data *data);
+void		handle_movement_bonus(t_data *d);
+void		handle_sensi_right_mouse(t_data *data);
 
 #endif

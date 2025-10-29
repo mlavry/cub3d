@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 19:21:06 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/28 02:31:07 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/10/28 22:19:11 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	is_wall(t_data *data, int mx, int my)
 	return (data->map[my][mx] == '1');
 }
 
-static void	try_move(t_data *d, double dx, double dy)
+void	try_move(t_data *d, double dx, double dy)
 {
 	const double	r = 0.20;
 	double			new_x;
@@ -41,7 +41,7 @@ static void	try_move(t_data *d, double dx, double dy)
 		d->player.pos_y = new_y;
 }
 
-static void	rotate_player(t_player *p, double ang)
+void	rotate_player(t_player *p, double ang)
 {
 	double	old_dir_x;
 	double	old_plane_x;
