@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 01:18:28 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 16:14:23 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/04 17:41:22 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,7 @@ double	dda_first_hit_bonus(t_data *data, double rdx, double rdy, t_column *c)
 		dist = 1e-6;
 	hit_tile = map_at(data, a.mx, a.my);
 	c->tile = hit_tile;
+	c->mx = a.mx;
+	c->my = a.my;
 	return (dist);
 }

@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:23:01 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 16:10:29 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/04 23:38:05 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	render_frame_bonus(void *param)
 	}
 	handle_minimap_keys(data);
 	minimap_draw_rot_fov(data);
+	weapon_draw(data, dt);
 }
 
 void	launch_game_bonus(t_data *data)
@@ -69,6 +70,7 @@ void	launch_game_bonus(t_data *data)
 		return ;
 	set_image(data);
 	init_textures_bonus(data);
+	weapon_init(data);
 	minimap_init(data);
 	init_mouse(data);
 	init_player(data);

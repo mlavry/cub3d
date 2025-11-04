@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 21:27:27 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 01:59:36 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/04 23:38:16 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,6 @@ void	handle_movement_bonus(t_data *d, double dt)
 		rotate_player(&d->player, rot);
 	if (mlx_is_key_down(d->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(d->mlx);
+	if (mlx_is_key_down(d->mlx, MLX_KEY_SPACE))
+		weapon_shoot(d);
 }

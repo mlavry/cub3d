@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 20:35:53 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 01:33:11 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/04 21:48:02 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	doors_update(t_data *data, double dt)
 	int		i;
 
 	i = 0;
-	speed = 0.5;
+	speed = 1.5;
 	while (i < data->doors_count)
 	{
 		if (data->doors[i].moving > 0)

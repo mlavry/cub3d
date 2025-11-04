@@ -1,7 +1,7 @@
 NAME = cub3D
 BONUS = cub3D_bonus
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I$(SUBDIR) $(HEADERS)
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -I$(SUBDIR) $(HEADERS) -O3
 
 SRC = main.c open_map.c utils.c utils2.c GNL/get_next_line.c GNL/get_next_line_utils.c\
 Parsing/mapping.c Parsing/parser.c Parsing/parsing.c Parsing/readmap.c\
@@ -15,7 +15,7 @@ Render_3D/move.c Render_3D/render.c Render_3D/texturing.c\
 Bonus/minimap_bonus.c Bonus/main_bonus.c Bonus/game_bonus.c Bonus/utils_mm_bonus.c\
 Bonus/interactive_mm_bonus.c Bonus/minimap_fov_bonus.c Bonus/mouse_bonus.c\
 Bonus/dda_bonus.c Bonus/utils_bonus.c Bonus/doors_bonus.c Bonus/parsing_bonus.c\
-Bonus/texturing_bonus.c
+Bonus/texturing_bonus.c Bonus/weapon.c
 
 
 OBJ = $(SRC:.c=.o)

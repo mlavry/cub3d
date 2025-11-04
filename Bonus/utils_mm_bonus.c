@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 21:01:39 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/28 19:52:31 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/05 00:01:00 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ uint32_t	minimap_color_for_tile(t_data *data, double wx, double wy)
 	if (c == '1')
 		return (C_DARK);
 	if (c == '0')
-		return (C_WHITE);
+		return (C_GREY);
+	if (c == 'P')
+		return (C_BLUE_SPECIAL);
 	return (C_MINI_VOID);
 }

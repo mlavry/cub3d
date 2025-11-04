@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 01:15:27 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/29 23:46:39 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/04 23:39:52 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ void	draw_player_center(t_data *data, t_point c)
 		while (x <= r)
 		{
 			if (x * x + y * y <= r * r)
-				mlx_put_pixel(data->minimap.img, c.x + x, c.y + y, C_RED);
+				mlx_put_pixel(data->minimap.img,
+					c.x + x, c.y + y, C_BLUE_SPECIAL);
 			x++;
 		}
 		y++;

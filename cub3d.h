@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 16:09:54 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/04 23:34:13 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define C_RED 0xFF0000FFu
 # define COL_WALL_DARK 0xFFBFBFBFu
 # define C_DARK 0x000000FF
+# define C_BLUE_SPECIAL 0x96FFFFFF
 
 # include "Libft/libft.h"
 # include "GNL/get_next_line.h"
@@ -71,6 +72,8 @@ typedef struct s_column
 	int		y0;
 	int		y1;
 	char	tile;
+	int		mx;
+	int		my;
 }	t_column;
 
 typedef struct s_rect
@@ -87,6 +90,17 @@ typedef struct s_circle
 	int	py;
 	int	r;
 }	t_circle;
+
+typedef struct s_weapon
+{
+	mlx_texture_t	*tex;
+	int				w;
+	int				h;
+	double			phase;
+	double			recoil;
+	double			shot_timer;
+	double			cooldown;
+}	t_weapon;
 
 typedef struct s_minimap
 {
@@ -174,6 +188,7 @@ typedef struct s_data
 	t_params	param;
 	t_mouse		mouse;
 	t_doors		*doors;
+	t_weapon	weapon;
 }	t_data;
 
 t_data		*open_map(void);
@@ -267,5 +282,10 @@ void		try_move_bonus(t_data *d, double dx, double dy);
 int			init_textures_bonus(t_data *data);
 void		draw_textured_column_bonus(t_data *d, t_column *c);
 void		col_blit(t_data *d, t_column *c, mlx_texture_t *tex, int tex_x);
+uint32_t	read_pixel_in_tex(mlx_texture_t *tex, int tx, int ty);
+
+void		weapon_init(t_data *d);
+void		weapon_draw(t_data *d, double dt);
+void		weapon_shoot(t_data *d);
 
 #endif
