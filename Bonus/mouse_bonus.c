@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 21:27:27 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/29 23:49:03 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/04 01:59:36 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,11 @@ static void	handle_mouse_keys(t_data *data)
 	handle_sensi_mouse(data);
 }
 
-void	handle_movement_bonus(t_data *d)
+void	handle_movement_bonus(t_data *d, double dt)
 {
-	double	dt;
 	double	speed;
 	double	rot;
 
-	dt = get_dt_seconds(d);
 	handle_mouse(d);
 	handle_mouse_keys(d);
 	speed = 4.0 * dt;
@@ -96,13 +94,13 @@ void	handle_movement_bonus(t_data *d)
 	if (mlx_is_key_down(d->mlx, MLX_KEY_LEFT_SHIFT))
 		speed *= 1.8;
 	if (mlx_is_key_down(d->mlx, MLX_KEY_W))
-		try_move(d, d->player.dir_x * speed, d->player.dir_y * speed);
+		try_move_bonus(d, d->player.dir_x * speed, d->player.dir_y * speed);
 	if (mlx_is_key_down(d->mlx, MLX_KEY_S))
-		try_move(d, -d->player.dir_x * speed, -d->player.dir_y * speed);
+		try_move_bonus(d, -d->player.dir_x * speed, -d->player.dir_y * speed);
 	if (mlx_is_key_down(d->mlx, MLX_KEY_A))
-		try_move(d, d->player.dir_y * speed, -d->player.dir_x * speed);
+		try_move_bonus(d, d->player.dir_y * speed, -d->player.dir_x * speed);
 	if (mlx_is_key_down(d->mlx, MLX_KEY_D))
-		try_move(d, -d->player.dir_y * speed, d->player.dir_x * speed);
+		try_move_bonus(d, -d->player.dir_y * speed, d->player.dir_x * speed);
 	if (mlx_is_key_down(d->mlx, MLX_KEY_LEFT))
 		rotate_player(&d->player, -rot);
 	if (mlx_is_key_down(d->mlx, MLX_KEY_RIGHT))

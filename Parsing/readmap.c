@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:42:09 by aboutale          #+#    #+#             */
-/*   Updated: 2025/10/23 20:57:13 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/04 01:43:16 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	is_map_line(char *line)
 	return (1);
 }
 
-static char	*skip_to_map(int fd)
+char	*skip_to_map(int fd)
 {
 	char	*line;
 	char	*trimmed;
@@ -75,7 +75,7 @@ static char	*skip_to_map(int fd)
 	return (NULL);
 }
 
-static int read_map_lines(t_data *game, int fd, char *first_line, int count)
+int	read_map_lines(t_data *game, int fd, char *first_line, int count)
 {
 	char	*line;
 	int		i;

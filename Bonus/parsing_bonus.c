@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 20:26:20 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/29 22:05:28 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/04 02:07:45 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	**readmap_bonus(t_data *game, char *file)
 	char	*first_line;
 
 	game->max_len = count_long(file);
-	count = countline(file);
+	count = countline_bonus(file);
 	game->count = count;
 	if (count <= 0 || game->max_len == 0)
 		return (NULL);
@@ -137,31 +137,47 @@ int	allocate_doors(t_data *data)
 	return (0);
 }
 
-void	init_all_doors(t_data *data)
+int	countline_bonus(char *file)
 {
-	int	x;
-	int	y;
+	int		fd;
+	int		count;
+	char	*line;
+	char	*trimmed;
+
+	count = 0;
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (-1);
+	line = get_next_line(fd);
+	while (line)
+	{
+		//printf("Ligne lue: %s", line);
+		trimmed = whitespace(line);
+		if (*trimmed != '\0' && is_map_line_bonus(trimmed))
+			count++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (count);
+}
+
+int	is_map_line_bonus(char *line)
+{
 	int	i;
 
-	if (allocate_doors(data) == 1)
-		return ;
-	y = 0;
 	i = 0;
-	while (y < data->tiles_y && data->map[y])
+	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
+		i++;
+	while (!line[i])
+		return (0);
+	while (line[i])
 	{
-		x = 0;
-		while (x < line_len_no_nl(data->map[y]))
-		{
-			if (data->map[y][x] == 'P')
-			{
-				data->doors[i].x = x;
-				data->doors[i].y = y;
-				data->doors[i].open = 0.0;
-				data->doors[i].moving = 0;
-				i++;
-			}
-			x++;
-		}
-		y++;
+		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' && line[i] != 'S'
+			&& line[i] != 'E' && line[i] != 'W' && line[i] != 'P'
+			&& line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+			return (0);
+		i++;
 	}
+	return (1);
 }

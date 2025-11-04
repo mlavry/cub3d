@@ -1,27 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda.c                                              :+:      :+:    :+:   */
+/*   dda_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/15 20:10:24 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 01:34:18 by mlavry           ###   ########.fr       */
+/*   Created: 2025/11/04 01:18:28 by mlavry            #+#    #+#             */
+/*   Updated: 2025/11/04 01:35:18 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-void	dda_init(t_data *data, t_dda *a, double rdx, double rdy)
-{
-	t_player	*p;
-
-	p = &data->player;
-	a->mx = (int)p->pos_x;
-	a->my = (int)p->pos_y;
-	dda_init_axis(&a->ddx, rdx);
-	dda_init_axis(&a->ddy, rdy);
-}
 
 static void	dda_setup_steps(t_data *data, t_dda *a, double rdx, double rdy)
 {
@@ -50,8 +39,19 @@ static void	dda_setup_steps(t_data *data, t_dda *a, double rdx, double rdy)
 	}
 }
 
-static void	dda_walk(t_data *data, t_dda *a, int *side_hit)
+static int	check_doors_open(t_data *data, t_dda *a)
 {
+	t_doors	*dr;
+
+	dr = door_at(data, a->mx, a->my);
+	if (dr && dr->open < 0.99)
+		return (1);
+	return (0);
+}
+
+void	dda_walk_bonus(t_data *data, t_dda *a, int *side_hit)
+{
+
 	while (1)
 	{
 		if (a->sdx < a->sdy)
@@ -68,6 +68,11 @@ static void	dda_walk(t_data *data, t_dda *a, int *side_hit)
 		}
 		if (map_at(data, a->mx, a->my) == '1')
 			return ;
+		if (map_at(data, a->mx, a->my) == 'P')
+		{
+			if (check_doors_open(data, a))
+				return ;
+		}
 	}
 }
 
@@ -94,7 +99,7 @@ static double	dda_perp_dist(t_data *d, t_dda *a,
 	return (num / den);
 }
 
-double	dda_first_hit(t_data *data, double rdx, double rdy, int *side_hit)
+double	dda_first_hit_bonus(t_data *data, double rdx, double rdy, int *side_hit)
 {
 	t_dda		a;
 	double		dist;
@@ -102,7 +107,7 @@ double	dda_first_hit(t_data *data, double rdx, double rdy, int *side_hit)
 
 	dda_init(data, &a, rdx, rdy);
 	dda_setup_steps(data, &a, rdx, rdy);
-	dda_walk(data, &a, side_hit);
+	dda_walk_bonus(data, &a, side_hit);
 	vec.x = rdx;
 	vec.y = rdy;
 	dist = dda_perp_dist(data, &a, vec, *side_hit);

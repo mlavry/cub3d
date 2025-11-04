@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:22:05 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/29 23:44:11 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/04 02:10:13 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 		perror("calloc");
 		return (1);
 	}
-	if (parser(data, argc, argv))
+	if (parser_bonus(data, argc, argv))
 		return (0);
 	data->tiles_y = data->count;
 	data->tiles_x = data->max_len;

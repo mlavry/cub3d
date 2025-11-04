@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/29 21:49:49 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/04 02:06:51 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,12 @@ double		get_dt_seconds(t_data *data);
 void		handle_movement(t_data *d);
 
 void		print_player_info(t_data *data);
+int			count_long(char *file);
+int			countline(char *file);
+char		*skip_to_map(int fd);
+int			read_map_lines(t_data *game, int fd, char *first_line, int count);
+int			countline_bonus(char *file);
+int			is_map_line_bonus(char *line);
 
 int			parser(t_data *data, int argc, char **argv);
 
@@ -239,11 +245,21 @@ void		minimap_draw_circle_border(t_data *d, uint32_t col);
 
 void		init_mouse(t_data *data);
 void		handle_mouse(t_data *data);
-void		handle_movement_bonus(t_data *d);
-void		handle_sensi_right_mouse(t_data *data);
+void		handle_movement_bonus(t_data *d, double dt);
 
 int			parser_bonus(t_data *data, int argc, char **argv);
 char		**readmap_bonus(t_data *game, char *file);
-int 		valid_map_bonus(t_data *game);
+int			valid_map_bonus(t_data *game);
+int			allocate_doors(t_data *data);
+t_doors		*door_at(t_data *data, int x, int y);
+void		doors_update(t_data *data, double dt);
+int			player_is_in_tile(t_data *data, int tx, int ty);
+void		handle_doors_movement(t_data *data);
+void		init_all_doors(t_data *data);
+int			is_wall_bonus(t_data *data, int mx, int my);
+double		dda_first_hit_bonus(t_data *data, double rdx,
+				double rdy, int *side_hit);
+void		dda_init(t_data *data, t_dda *a, double rdx, double rdy);
+void		try_move_bonus(t_data *d, double dx, double dy);
 
 #endif

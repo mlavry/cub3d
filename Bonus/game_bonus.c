@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:23:01 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/28 22:23:45 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/04 02:00:33 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,20 @@ void	render_frame_bonus(void *param)
 	int			x;
 	t_column	c;
 	t_data		*data;
+	double		dt;
 
 	data = (t_data *)param;
-	handle_movement_bonus(data);
+	dt = get_dt_seconds(data);
+	handle_movement_bonus(data, dt);
+	doors_update(data, dt);
+	handle_doors_movement(data);
 	set_background(data);
 	x = 0;
 	while (x < data->monitor_w)
 	{
 		c.x = x;
 		compute_ray_dir(data, x, &c.rdx, &c.rdy);
-		c.dist = dda_first_hit(data, c.rdx, c.rdy, &c.side);
+		c.dist = dda_first_hit_bonus(data, c.rdx, c.rdy, &c.side);
 		project_column(data, c.dist, &c.y0, &c.y1);
 		draw_textured_column(data, &c);
 		x++;
@@ -68,6 +72,7 @@ void	launch_game_bonus(t_data *data)
 	minimap_init(data);
 	init_mouse(data);
 	init_player(data);
+	init_all_doors(data);
 	mlx_loop_hook(data->mlx, render_frame_bonus, data);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
