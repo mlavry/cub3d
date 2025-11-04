@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 02:06:51 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/04 16:09:54 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_column
 	int		side;
 	int		y0;
 	int		y1;
+	char	tile;
 }	t_column;
 
 typedef struct s_rect
@@ -143,6 +144,7 @@ typedef struct s_textures
 	mlx_texture_t	*south;
 	mlx_texture_t	*east;
 	mlx_texture_t	*west;
+	mlx_texture_t	*door;
 }	t_textures;
 
 typedef struct s_doors
@@ -258,8 +260,12 @@ void		handle_doors_movement(t_data *data);
 void		init_all_doors(t_data *data);
 int			is_wall_bonus(t_data *data, int mx, int my);
 double		dda_first_hit_bonus(t_data *data, double rdx,
-				double rdy, int *side_hit);
+				double rdy, t_column *c);
 void		dda_init(t_data *data, t_dda *a, double rdx, double rdy);
 void		try_move_bonus(t_data *d, double dx, double dy);
+
+int			init_textures_bonus(t_data *data);
+void		draw_textured_column_bonus(t_data *d, t_column *c);
+void		col_blit(t_data *d, t_column *c, mlx_texture_t *tex, int tex_x);
 
 #endif

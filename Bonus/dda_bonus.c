@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 01:18:28 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 01:35:18 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/04 16:14:23 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,19 +99,22 @@ static double	dda_perp_dist(t_data *d, t_dda *a,
 	return (num / den);
 }
 
-double	dda_first_hit_bonus(t_data *data, double rdx, double rdy, int *side_hit)
+double	dda_first_hit_bonus(t_data *data, double rdx, double rdy, t_column *c)
 {
 	t_dda		a;
 	double		dist;
 	t_dpoint	vec;
+	char		hit_tile;
 
 	dda_init(data, &a, rdx, rdy);
 	dda_setup_steps(data, &a, rdx, rdy);
-	dda_walk_bonus(data, &a, side_hit);
+	dda_walk_bonus(data, &a, &c->side);
 	vec.x = rdx;
 	vec.y = rdy;
-	dist = dda_perp_dist(data, &a, vec, *side_hit);
+	dist = dda_perp_dist(data, &a, vec, c->side);
 	if (dist < 1e-6)
 		dist = 1e-6;
+	hit_tile = map_at(data, a.mx, a.my);
+	c->tile = hit_tile;
 	return (dist);
 }

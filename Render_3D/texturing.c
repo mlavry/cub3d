@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 21:19:30 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/27 23:04:36 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/04 15:53:43 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static mlx_texture_t	*col_prepare(t_data *data, t_column *c, int *tex_x)
 	return (tex);
 }
 
-static void	col_blit(t_data *d, t_column *c, mlx_texture_t *tex, int tex_x)
+void	col_blit(t_data *d, t_column *c, mlx_texture_t *tex, int tex_x)
 {
 	double	step;
 	double	tex_pos;

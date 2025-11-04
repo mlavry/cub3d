@@ -14,7 +14,8 @@ Render_3D/dda.c Render_3D/fill_pixel.c Render_3D/init_map.c\
 Render_3D/move.c Render_3D/render.c Render_3D/texturing.c\
 Bonus/minimap_bonus.c Bonus/main_bonus.c Bonus/game_bonus.c Bonus/utils_mm_bonus.c\
 Bonus/interactive_mm_bonus.c Bonus/minimap_fov_bonus.c Bonus/mouse_bonus.c\
-Bonus/dda_bonus.c Bonus/utils_bonus.c Bonus/doors_bonus.c Bonus/parsing_bonus.c
+Bonus/dda_bonus.c Bonus/utils_bonus.c Bonus/doors_bonus.c Bonus/parsing_bonus.c\
+Bonus/texturing_bonus.c
 
 
 OBJ = $(SRC:.c=.o)

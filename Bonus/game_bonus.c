@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:23:01 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 02:00:33 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/04 16:10:29 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	render_frame_bonus(void *param)
 	{
 		c.x = x;
 		compute_ray_dir(data, x, &c.rdx, &c.rdy);
-		c.dist = dda_first_hit_bonus(data, c.rdx, c.rdy, &c.side);
+		c.dist = dda_first_hit_bonus(data, c.rdx, c.rdy, &c);
 		project_column(data, c.dist, &c.y0, &c.y1);
-		draw_textured_column(data, &c);
+		draw_textured_column_bonus(data, &c);
 		x++;
 	}
 	handle_minimap_keys(data);
@@ -68,7 +68,7 @@ void	launch_game_bonus(t_data *data)
 	if (!data->mlx)
 		return ;
 	set_image(data);
-	init_textures(data);
+	init_textures_bonus(data);
 	minimap_init(data);
 	init_mouse(data);
 	init_player(data);
