@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 20:26:20 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/05 23:39:43 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/05 23:55:55 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 int	parser_bonus(t_data *data, int argc, char **argv)
 {
-	t_params	param = {0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, {0, 0, 0},
-	{0, 0, 0}};
-
-	data->param = param;
 	data->map = NULL;
 	if (argc != 2)
 		return (write(2, "Error usage : ./cub3D map.cub\n", 30), 1);

@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 21:58:04 by aboutale          #+#    #+#             */
-/*   Updated: 2025/11/05 23:23:34 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/05 23:56:37 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,6 @@ int	valid_map(t_data *game)
 
 int	parser(t_data *data, int argc, char **argv)
 {
-	t_params	param = {0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, {0, 0, 0},
-	{0, 0, 0}};
-
-	data->param = param;
 	data->map = NULL;
 	if (argc != 2)
 		return (write(2, "Error usage : ./cub3D map.cub\n", 30), 1);

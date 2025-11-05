@@ -1,4 +1,3 @@
-Norme 
 Organisation fichier 
 Init struct propre 
 Fonction erreur 
