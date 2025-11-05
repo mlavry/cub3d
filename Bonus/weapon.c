@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:57:15 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 23:46:41 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/05 22:28:58 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,31 +43,30 @@ void	weapon_shoot(t_data *d)
 
 static void	weapon_draw_loop(t_data *d, int start_x, int start_y)
 {
-	int			sx;
-	int			sy;
+	t_point		s;
 	int			screen_x;
 	int			screen_y;
 	uint32_t	col;
 
-	sy = 0;
-	while (sy < d->weapon.h)
+	s.y = 0;
+	while (s.y < d->weapon.h)
 	{
-		sx = 0;
-		while (sx < d->weapon.w)
+		s.x = 0;
+		while (s.x < d->weapon.w)
 		{
-			screen_x = start_x + sx;
-			screen_y = start_y + sy;
+			screen_x = start_x + s.x;
+			screen_y = start_y + s.y;
 			if (screen_x >= 0 && screen_x < d->monitor_w
 				&& screen_y >= 0 && screen_y < d->monitor_h)
 			{
-				col = read_pixel_in_tex(d->weapon.tex, sx, sy);
+				col = read_pixel_in_tex(d->weapon.tex, s.x, s.y);
 				if ((col & 0xFFu) != 0)
 					mlx_put_pixel(d->window.img,
 						(uint32_t)screen_x, (uint32_t)screen_y, col);
 			}
-			sx++;
+			s.x++;
 		}
-		sy++;
+		s.y++;
 	}
 }
 

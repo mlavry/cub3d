@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 20:35:53 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 21:48:02 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/05 22:32:29 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,25 @@ void	doors_update(t_data *data, double dt)
 int	player_is_in_tile(t_data *data, int tx, int ty)
 {
 	return ((int)data->player.pos_x == tx && (int)data->player.pos_y == ty);
+}
+
+int	init_textures_bonus(t_data *data)
+{
+	data->textures.north = mlx_load_png(data->param.no_path);
+	data->textures.south = mlx_load_png(data->param.so_path);
+	data->textures.east = mlx_load_png(data->param.ea_path);
+	data->textures.west = mlx_load_png(data->param.we_path);
+	data->textures.door = mlx_load_png("Textures/door.png");
+	if (!data->textures.north || !data->textures.south || !data->textures.east
+		|| !data->textures.west)
+	{
+		printf("Error when loading textures\n");
+		exit (1);
+	}
+	if ((!data->textures.door))
+	{
+		printf("Error when loading door texture\n");
+		exit (1);
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 01:18:28 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 17:41:22 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/05 22:23:03 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static int	check_doors_open(t_data *data, t_dda *a)
 
 void	dda_walk_bonus(t_data *data, t_dda *a, int *side_hit)
 {
-
 	while (1)
 	{
 		if (a->sdx < a->sdy)
