@@ -12,115 +12,62 @@
 
 #include "../cub3d.h"
 
-int	countline(char *file)
+static int	check_extra_data(int fd, char *line)
 {
-	int		fd;
-	int		count;
-	char	*line;
-	char	*trimmed;
+	char	*trim;
 
-	count = 0;
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (-1);
-	line = get_next_line(fd);
 	while (line)
 	{
-		//printf("Ligne lue: %s", line);
-		trimmed = whitespace(line);
-		if (*trimmed != '\0' && is_map_line(trimmed))
-			count++;
+		trim = whitespace(line);
+		if (*trim != '\0')
+			return (free(line),
+				write(2, "Error: extra data after map\n", 28), 0);
 		free(line);
 		line = get_next_line(fd);
-	}
-	close(fd);
-	return (count);
-}
-
-int	is_map_line(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
-		i++;
-	while (!line[i])
-		return (0);
-	while (line[i])
-	{
-		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' && line[i] != 'S'
-			&& line[i] != 'E' && line[i] != 'W'
-			&& line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
-			return (0);
-		i++;
 	}
 	return (1);
 }
 
-char	*skip_to_map(int fd)
+static int	fill_line(t_data *game, char *line, int i)
 {
-	char	*line;
-	char	*trimmed;
+	int	j;
 
-	line = get_next_line(fd);
-	while (line)
+	j = 0;
+	game->map[i] = malloc(sizeof(char) * (game->max_len + 1));
+	if (!game->map[i])
+		return (0);
+	while (line[j] && line[j] != '\n')
 	{
-		//printf("Skip: '%s'", line);
-		trimmed = whitespace(line);
-		if (*trimmed != '\0' && is_map_line(trimmed))
-			return (line);
-		free(line);
-		line = get_next_line(fd);
+		game->map[i][j] = line[j];
+		j++;
 	}
-	return (NULL);
+	while (j < game->max_len)
+		game->map[i][j++] = ' ';
+	game->map[i][j] = '\0';
+	return (1);
 }
 
 int	read_map_lines(t_data *game, int fd, char *first_line, int count)
 {
 	char	*line;
 	int		i;
-	int		j;
 
 	line = first_line;
 	i = 0;
-	while (line)
+	while (line && i < count)
 	{
-		game->map[i] = malloc(sizeof(char) * (game->max_len + 1));
-		if (!game->map[i])
+		if (!fill_line(game, line, i))
 			return (0);
-		j = 0;
-		while (line[j] && line[j] != '\n')
-		{
-			game->map[i][j] = line[j];
-			j++;
-		}
-		while (j < game->max_len)
-			game->map[i][j++] = ' ';
-		game->map[i][j] = '\0';
 		free(line);
 		line = get_next_line(fd);
 		i++;
-		if (i >= count)
-			break ;
-	}
-	while (line)
-	{
-		char *trimmed = whitespace(line);
-	// si la ligne n'est pas vide -> erreur
-		if (*trimmed != '\0')
-		{
-			free(line);
-			return (write(2, "Error: extra data after map\n", 28), 0);
-		}
-		free(line);
-		line = get_next_line(fd);
 	}
 	game->count = i;
 	game->map[i] = NULL;
-	return (1);
+	return (check_extra_data(fd, line));
 }
 
-int count_long(char *file)
+int	count_long(char *file)
 {
 	int		fd;
 	int		len;
@@ -134,11 +81,11 @@ int count_long(char *file)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (is_map_line(line)) // 🔑 on ignore les paramètres
+		if (is_map_line(line))
 		{
 			len = ft_strlen(line);
 			if (line[len - 1] == '\n')
-				len--; // enlever le \n
+				len--;
 			if (len > max_len)
 				max_len = len;
 		}
@@ -149,7 +96,7 @@ int count_long(char *file)
 	return (max_len);
 }
 
-char **readmap(t_data *game, char *file)
+char	**readmap(t_data *game, char *file)
 {
 	int		fd;
 	int		count;
@@ -170,10 +117,7 @@ char **readmap(t_data *game, char *file)
 	if (!first_line)
 		return (close(fd), NULL);
 	if (!read_map_lines(game, fd, first_line, count))
-	{
-		close(fd);
-		return (NULL);
-	}
+		return (close(fd), NULL);
 	close(fd);
 	if (!valid_map(game))
 		return (write(2, "Error: invalid map\n", 20), NULL);

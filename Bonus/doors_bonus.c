@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 20:36:30 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 01:46:11 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/05 23:26:02 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,26 @@ void	try_move_bonus(t_data *d, double dx, double dy)
 		d->player.pos_x = new_x;
 	if (!is_wall_bonus(d, (int)(d->player.pos_x), (int)(new_y + cy)))
 		d->player.pos_y = new_y;
+}
+
+int	count_doors_in_map(t_data *data)
+{
+	int	x;
+	int	y;
+	int	n;
+
+	y = 0;
+	n = 0;
+	while (y < data->tiles_y && data->map[y])
+	{
+		x = 0;
+		while (x < line_len_no_nl(data->map[y]))
+		{
+			if (data->map[y][x] == 'P')
+				n++;
+			x++;
+		}
+		y++;
+	}
+	return (n);
 }

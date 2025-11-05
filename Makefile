@@ -4,12 +4,12 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -I$(SUBDIR) $(HEADERS) -O3
 
 SRC = main.c init_struct.c utils.c utils2.c GNL/get_next_line.c GNL/get_next_line_utils.c\
-Parsing/mapping.c Parsing/parser.c Parsing/parsing.c Parsing/readmap.c\
+Parsing/mapping.c Parsing/parser.c Parsing/parsing.c Parsing/readmap.c Parsing/apping.c Parsing/reader.c\
 Render_3D/dda.c Render_3D/fill_pixel.c Render_3D/init_map.c\
 Render_3D/move.c Render_3D/render.c Render_3D/texturing.c
 
 SRC_BONUS = init_struct.c utils.c utils2.c GNL/get_next_line.c GNL/get_next_line_utils.c\
-Parsing/mapping.c Parsing/parser.c Parsing/parsing.c Parsing/readmap.c\
+Parsing/mapping.c Parsing/parser.c Parsing/parsing.c Parsing/readmap.c Parsing/apping.c Parsing/reader.c\
 Render_3D/dda.c Render_3D/fill_pixel.c Render_3D/init_map.c\
 Render_3D/move.c Render_3D/render.c Render_3D/texturing.c\
 Bonus/minimap_bonus.c Bonus/main_bonus.c Bonus/game_bonus.c Bonus/utils_mm_bonus.c\

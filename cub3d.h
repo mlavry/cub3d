@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 23:34:13 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/05 23:26:21 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,9 +191,6 @@ typedef struct s_data
 	t_weapon	weapon;
 }	t_data;
 
-t_data		*open_map(void);
-char		**create_tab(t_data *data, char *map_path);
-void		print_map(t_data *data);
 void		launch_game(t_data *data);
 void		fill_rect(t_data *data, mlx_image_t *img, t_rect dim,
 				uint32_t color);
@@ -222,6 +219,9 @@ int			countline_bonus(char *file);
 int			is_map_line_bonus(char *line);
 
 int			parser(t_data *data, int argc, char **argv);
+int			check_duplicate(t_data *game, char *trimmed);
+int			is_valid_char_bonus(char c);
+int			is_valid_direction(char c);
 
 int			is_cub(char *argv);
 int			is_param(t_params *param, char *line);
@@ -278,6 +278,7 @@ double		dda_first_hit_bonus(t_data *data, double rdx,
 				double rdy, t_column *c);
 void		dda_init(t_data *data, t_dda *a, double rdx, double rdy);
 void		try_move_bonus(t_data *d, double dx, double dy);
+int			count_doors_in_map(t_data *data);
 
 int			init_textures_bonus(t_data *data);
 void		draw_textured_column_bonus(t_data *d, t_column *c);

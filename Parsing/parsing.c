@@ -12,16 +12,6 @@
 
 #include "../cub3d.h"
 
-int	is_cub(char *filename)
-{
-	int	len;
-
-	len = ft_strlen(filename);
-	if ((len <= 4) || (ft_strcmp(filename + len - 4, ".cub") != 0))
-		return (0);
-	return (1);
-}
-
 int	param_is(t_params *param, char *line)
 {
 	if (ft_strncmp(line, "EA ", 3) == 0)
@@ -70,25 +60,7 @@ int	is_param(t_params *param, char *line)
 	return (-1);
 }
 
-int	all_param_ok(t_params *param)
-{
-	return (param->no && param->so && param->we && param->ea
-		&& param->f && param->c);
-}
-
-int	check_duplicate(t_data *game, char *trimmed)
-{
-	int	extra;
-
-	extra = is_param(&game->param, trimmed);
-	if (extra == 1)
-	{
-		return (write(2, "Error: duplicate parameter\n", 27), 0);
-	}
-	return (1);
-}
-
-static char *skip_empty_lines(int fd)
+static char	*skip_empty_lines(int fd)
 {
 	char	*line;
 	char	*trimmed;
@@ -105,7 +77,7 @@ static char *skip_empty_lines(int fd)
 	return (NULL);
 }
 
-static int handle_param_line(t_data *game, char *line)
+static int	handle_param_line(t_data *game, char *line)
 {
 	char	*trimmed;
 
@@ -134,7 +106,7 @@ static int handle_param_line(t_data *game, char *line)
 	return (1);
 }
 
-int check_param(t_data *game, char *file)
+int	check_param(t_data *game, char *file)
 {
 	int		fd;
 	char	*line;

@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 20:26:20 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 02:07:45 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/05 23:39:43 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	parser_bonus(t_data *data, int argc, char **argv)
 {
-	t_params param = {0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, {0, 0, 0},
+	t_params	param = {0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, {0, 0, 0},
 	{0, 0, 0}};
 
 	data->param = param;
@@ -29,12 +29,9 @@ int	parser_bonus(t_data *data, int argc, char **argv)
 	if (!data->map)
 		return (write(2, "Error : could not read the mapp\n", 31));
 	if (!is_close(data))
-    	exit(0);
+		exit(0);
 	if (!check_holes(data))
-    	exit(0);
-	//print_params_debug(&param);
-	//print_map_debug(data->map);
-	//debug_map_lengths(data->map);
+		exit(0);
 	return (0);
 }
 
@@ -59,17 +56,14 @@ char	**readmap_bonus(t_data *game, char *file)
 	if (!first_line)
 		return (close(fd), NULL);
 	if (!read_map_lines(game, fd, first_line, count))
-	{
-		close(fd);
-		return (NULL);
-	}
+		return (close(fd), NULL);
 	close(fd);
 	if (!valid_map_bonus(game))
 		return (write(2, "Error: invalid map\n", 20), NULL);
 	return (game->map);
 }
 
-int valid_map_bonus(t_data *game)
+int	valid_map_bonus(t_data *game)
 {
 	int	i;
 	int	j;
@@ -77,64 +71,25 @@ int valid_map_bonus(t_data *game)
 	int	player;
 
 	j = 0;
-	i = 0;
+	i = -1;
 	player = 0;
-	while (game->map[i])
+	while (game->map[++i])
 	{
 		len = ft_strlen(game->map[i]);
 		if (len == 0)
 			return (0);
-		j = 0;
-		while (j < len)
+		j = -1;
+		while (++j < len)
 		{
-			if (game->map[i][j] != '1' && game->map[i][j] != '0'
-				&& game->map[i][j] != 'N' && game->map[i][j] != 'E'
-				&& game->map[i][j] != 'S' && game->map[i][j] != 'W'
-				&& game->map[i][j] != ' ' && game->map[i][j] != 'P')
+			if (!is_valid_char_bonus(game->map[i][j]))
 				return (0);
-			if (game->map[i][j] == 'S' || game->map[i][j] == 'N'
-			|| game->map[i][j] == 'E' || game->map[i][j] == 'W')
+			if (is_valid_direction(game->map[i][j]))
 				player++;
-			j++;
 		}
-		i++;
 	}
 	if (player != 1)
 		return (write(2, "Error: invalid number of players\n", 33), 0);
 	return (1);
-}
-
-static int	count_doors_in_map(t_data *data)
-{
-	int	x;
-	int	y;
-	int	n;
-
-	y = 0;
-	n = 0;
-	while (y < data->tiles_y && data->map[y])
-	{
-		x = 0;
-		while (x < line_len_no_nl(data->map[y]))
-		{
-			if (data->map[y][x] == 'P')
-				n++;
-			x++;
-		}
-		y++;
-	}
-	return (n);
-}
-
-int	allocate_doors(t_data *data)
-{
-	data->doors_count = count_doors_in_map(data);
-	if (data->doors_count <= 0)
-		return (1);
-	data->doors = malloc(sizeof(t_doors) * data->doors_count);
-	if (!data->doors)
-		exit(0);
-	return (0);
 }
 
 int	countline_bonus(char *file)
@@ -151,7 +106,6 @@ int	countline_bonus(char *file)
 	line = get_next_line(fd);
 	while (line)
 	{
-		//printf("Ligne lue: %s", line);
 		trimmed = whitespace(line);
 		if (*trimmed != '\0' && is_map_line_bonus(trimmed))
 			count++;

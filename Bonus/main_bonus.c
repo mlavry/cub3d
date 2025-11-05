@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:22:05 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 02:10:13 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/05 23:25:26 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ int	mm_player_px_radius(t_data *d)
 	if (r > (double)d->minimap.radius / 6.0)
 		r = (double)d->minimap.radius / 6.0;
 	return ((int)r);
+}
+
+int	allocate_doors(t_data *data)
+{
+	data->doors_count = count_doors_in_map(data);
+	if (data->doors_count <= 0)
+		return (1);
+	data->doors = malloc(sizeof(t_doors) * data->doors_count);
+	if (!data->doors)
+		exit(0);
+	return (0);
 }
 
 int	main(int argc, char **argv)
