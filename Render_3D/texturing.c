@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 21:19:30 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 15:53:43 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/06 00:10:33 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ mlx_texture_t	*pick_wall_texture(t_data *d, int side, double rdx, double rdy)
 	if (side == 0)
 	{
 		if (rdx > 0.0)
-			return (d->textures.west);
-		return (d->textures.east);
+			return (d->textures.east);
+		return (d->textures.west);
 	}
 	if (rdy > 0.0)
-		return (d->textures.north);
-	return (d->textures.south);
+		return (d->textures.south);
+	return (d->textures.north);
 }
 
 uint32_t	read_pixel_in_tex(mlx_texture_t *tex, int tx, int ty)

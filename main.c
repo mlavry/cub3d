@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:01:28 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/05 23:44:48 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/06 00:03:16 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	if (parser(data, argc, argv))
+	{
+		free(data);
 		return (0);
+	}
 	data->tiles_y = data->count;
 	data->tiles_x = data->max_len;
 	launch_game(data);

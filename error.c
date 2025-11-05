@@ -6,15 +6,10 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 17:46:45 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/05 22:20:05 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/05 23:58:07 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_empty(t_data *data)
-{
-	data->map = NULL;
-	data->tiles_y = 0;
-	data->mlx = NULL;
-}
+

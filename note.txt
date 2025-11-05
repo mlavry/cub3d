@@ -1,5 +1,4 @@
 Organisation fichier 
-Init struct propre 
 Fonction erreur 
 Check leak
 Detail fonction (commentaire)
