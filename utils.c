@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 21:20:08 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/29 23:48:32 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/05 21:32:20 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,21 @@ void	init_player_dir(t_data *data, int x, int y)
 	if (data->map[y][x] == 'N')
 	{
 		data->player.dir_x = 0;
-		data->player.dir_y = 1;
+		data->player.dir_y = -1;
 	}
 	else if (data->map[y][x] == 'S')
 	{
 		data->player.dir_x = 0;
-		data->player.dir_y = -1;
+		data->player.dir_y = 1;
 	}
 	else if (data->map[y][x] == 'E')
 	{
-		data->player.dir_x = -1;
+		data->player.dir_x = 1;
 		data->player.dir_y = 0;
 	}
 	else if (data->map[y][x] == 'W')
 	{
-		data->player.dir_x = 1;
+		data->player.dir_x = -1;
 		data->player.dir_y = 0;
 	}
 }
