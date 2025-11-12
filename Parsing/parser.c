@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 19:22:28 by aboutale          #+#    #+#             */
-/*   Updated: 2025/10/23 20:57:06 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/13 00:18:18 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int	parse_colour(t_data *game, char *line)
 
 	split = ft_split(whitespace(line + 2), ',');
 	if (!split[0] || !split[1] || !split[2] || split[3] != NULL )
-		return (write(2, "Error colour not valid\n", 23), 0);
+		helper_error_parsing(game, line, split, "Error\nColour not valid\n");
 	rgb[0] = parse_rgb(split[0]);
 	rgb[1] = parse_rgb(split[1]);
 	rgb[2] = parse_rgb(split[2]);
 	if (rgb[0] == -1 || rgb[1] == -1 || rgb[2] == -1)
-		return (write(2, "Error: invalid RGB value\n", 25), 0);
+		helper_error_parsing(game, line, split, "Error\nInvalid RGB value\n");
 	if (line[0] == 'F')
 	{
 		game->param.f_rgb[0] = rgb[0];

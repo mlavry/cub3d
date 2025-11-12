@@ -1,0 +1,235 @@
+# ====== MLX42 / GLFW / OpenGL / X11 suppressions ======
+# Objectif : masquer les fuites "connues" de la stack graphique
+# ATTENTION : n'utilise pas ceci pour cacher tes vraies fuites (malloc non free, etc.)
+
+# libstdc++ / loader reachable on dlopen
+{
+  libstdcpp_loader_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libstdc++.so*
+}
+{
+  ld_linux_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/ld-linux*.so*
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:ft_calloc
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-15.so.1
+   fun:_ZN4llvm13StringMapImpl11RehashTableEj
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-15.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-15.so.1
+   fun:_ZN4llvm2cl6Option11addArgumentEv
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-15.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+}
+
+# LLVM/Mesa (radeonsi, JIT, etc.)
+{
+  LLVM_Mesa_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libLLVM-*.so*
+}
+{
+  Mesa_dri_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/dri/*_dri.so
+}
+
+# X11 locale/charset init (glfw -> X11)
+{
+  X11_locale_db_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libX11.so*
+}
+
+# Loader / ld-linux allocations
+{
+  ld_linux_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/ld-linux*.so*
+}
+
+# pthread_once/TLS init
+{
+  pthread_tls_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libpthread.so*
+}
+
+# --- X11 (Xlib) : allocations internes, souvent "reachable" ---
+{
+  X11_reachable_all
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libX11.so*
+}
+{
+  Xcursor_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libXcursor.so*
+}
+{
+  Xrender_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libXrender.so*
+}
+{
+  Xrandr_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libXrandr.so*
+}
+{
+  Xi_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libXi.so*
+}
+
+# --- OpenGL / GLX : init du contexte GL, drivers, etc. ---
+{
+  GLX_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libGLX*.so*
+}
+{
+  OpenGL_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libGL.so*
+}
+
+# --- GLFW : allocations tenues par la lib le temps de la fenêtre ---
+{
+  GLFW_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libglfw*.so*
+}
+# Variante si les stacks montrent surtout des frames nommées :
+{
+  GLFW_malloc_chain
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  fun:malloc
+  ...
+  fun:*glfw*
+  ...
+}
+
+# --- Pthread / loader : TLS et runtime, pas des fuites de ton code ---
+{
+  pthread_tls
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libpthread.so*
+}
+{
+  ld_linux_tls
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/ld-linux*.so*
+}
+
+# --- PulseAudio/ALSA (si tu as du son via GLFW/X11) ---
+{
+  pulseaudio_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libpulse*.so*
+}
+{
+  alsa_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libasound.so*
+}
+
+# ====== (Option) patterns plus ciblés par side ======
+# Murs verticaux/horizontaux -> parfois callstacks différentes selon le driver.
+# Garde-les si tu vois encore des fuites "definitely lost" côté GLX/driver.
+{
+  Mesa_driver_gl_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/dri/*_dri.so
+}
+
+# ===== glibc loader / dlopen (dl-find_object, dl-open, ld-linux) =====
+{
+  glibc_dlopen_possible
+  Memcheck:Leak
+  match-leak-kinds: possible
+  fun:malloc
+  fun:_dlfo_mappings_segment_allocate
+  ...
+  fun:_dl_find_object_update
+  ...
+  fun:dl_open_worker_begin
+  ...
+  fun:dl_open_worker
+  ...
+  fun:_dl_open
+  ...
+  fun:dlopen_doit
+}
+
+{
+  ld_linux_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/ld-linux*.so*
+}
+
+# ===== X11 initialisation (glfw -> XOpenDisplay, locale/charset DB) =====
+{
+  X11_open_display_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  fun:XOpenDisplay
+  obj:*/libX11.so*
+}
+
+{
+  X11_locale_db_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libX11.so*
+}
+
+# ===== GLFW côté init (si besoin) =====
+{
+  GLFW_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/libglfw*.so*
+}
+
+# ===== Mesa / DRI drivers =====
+{
+  Mesa_dri_reachable
+  Memcheck:Leak
+  match-leak-kinds: reachable
+  obj:*/dri/*_dri.so
+}

@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 17:12:45 by aboutale          #+#    #+#             */
-/*   Updated: 2025/10/23 20:57:10 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/12 23:53:04 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static char	*skip_empty_lines(int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
+	get_next_line(-1);
 	return (NULL);
 }
 
@@ -82,7 +83,7 @@ static int	handle_param_line(t_data *game, char *line)
 	char	*trimmed;
 
 	trimmed = whitespace(line);
-	if (!check_duplicate(game, trimmed))
+	if (!check_duplicate(game, trimmed, line))
 		return (0);
 	if (ft_strncmp(trimmed, "F ", 2) == 0 || ft_strncmp(trimmed, "C ", 2) == 0)
 	{
@@ -98,7 +99,7 @@ static int	handle_param_line(t_data *game, char *line)
 	else if (is_map_line(trimmed))
 	{
 		if (!all_param_ok(&game->param))
-			return (write(2, "Error: missing parameters\n", 26), 0);
+			put_error_and_exit(game, "Error\nMissing parameters\n");
 		return (2);
 	}
 	else
@@ -108,24 +109,23 @@ static int	handle_param_line(t_data *game, char *line)
 
 int	check_param(t_data *game, char *file)
 {
-	int		fd;
 	char	*line;
 	int		status;
 
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return ((void)write(2, "Error: cannot open file\n", 24), 0);
-	line = skip_empty_lines(fd);
+	game->map_fd = open(file, O_RDONLY);
+	if (game->map_fd < 0)
+		put_error_and_exit(game, "Error\nCannot open file\n");
+	line = skip_empty_lines(game->map_fd);
 	while (line)
 	{
 		status = handle_param_line(game, line);
 		free(line);
 		if (status == 0)
-			return (get_next_line(-1), (void)close(fd), 0);
+			return (get_next_line(-1), (void)close(game->map_fd), 0);
 		if (status == 2)
 			break ;
-		line = skip_empty_lines(fd);
+		line = skip_empty_lines(game->map_fd);
 	}
-	close(fd);
+	close(game->map_fd);
 	return (1);
 }

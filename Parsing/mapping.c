@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 21:58:04 by aboutale          #+#    #+#             */
-/*   Updated: 2025/11/07 07:51:28 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/12 21:23:15 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	parser(t_data *data, int argc, char **argv)
 {
 	data->map = NULL;
 	if (argc != 2)
-		put_error_and_exit("Error\nUsage : ./cub3D map.cub\n");
+		put_error_and_exit(data, "Error\nUsage : ./cub3D map.cub\n");
 	if (!is_cub(argv[1]))
-		put_error_and_exit("Error\nMap format : file.cub\n");
+		put_error_and_exit(data, "Error\nMap format : file.cub\n");
 	if (!check_param(data, argv[1]))
 		return (1);
 	data->map = readmap(data, argv[1]);

@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 21:20:08 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/12 16:19:29 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/13 00:13:14 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,26 @@ void	init_player_dir(t_data *data, int x, int y)
 		data->player.dir_x = -1;
 		data->player.dir_y = 0;
 	}
+}
+
+static void	free_tab(char **tab)
+{
+	int	i;
+
+	if (!tab)
+		return ;
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
+void	helper_error_parsing(t_data *data, char *line, char **split, char *str)
+{
+	free(line);
+	free_tab(split);
+	put_error_and_exit(data, str);
 }

@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:01:28 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/12 16:18:18 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/13 00:19:57 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ int	main(int argc, char **argv)
 {
 	t_data	*data;
 
-	data = calloc(1, sizeof(*data));
+	data = ft_calloc(1, sizeof(*data));
 	if (!data)
 	{
 		perror("calloc");
 		return (1);
 	}
+	data->map_fd = -1;
 	if (parser(data, argc, argv))
 	{
 		free(data);

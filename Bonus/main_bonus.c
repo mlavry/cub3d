@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:22:05 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/12 16:17:56 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/12 22:18:10 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 {
 	t_data	*data;
 
-	data = calloc(1, sizeof(*data));
+	data = ft_calloc(1, sizeof(*data));
 	if (!data)
 	{
 		perror("calloc");

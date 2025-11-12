@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apping.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aboutale <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 21:44:19 by aboutale          #+#    #+#             */
-/*   Updated: 2025/11/05 21:44:25 by aboutale         ###   ########.fr       */
+/*   Updated: 2025/11/12 23:53:39 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,15 @@ int	is_cub(char *filename)
 	return (1);
 }
 
-int	check_duplicate(t_data *game, char *trimmed)
+int	check_duplicate(t_data *game, char *trimmed, char *line)
 {
 	int	extra;
 
 	extra = is_param(&game->param, trimmed);
 	if (extra == 1)
 	{
-		return (write(2, "Error: duplicate parameter\n", 27), 0);
+		free(line);
+		put_error_and_exit(game, "Error\nDuplicate parameter\n");
 	}
 	return (1);
 }

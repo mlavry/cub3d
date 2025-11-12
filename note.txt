@@ -1,6 +1,2 @@
-Organisation fichier 
-Fonction erreur 
 Check leak
-Detail fonction (commentaire)
-
 Modif texture avant de rendre 

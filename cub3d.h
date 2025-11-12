@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/12 16:25:24 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/13 00:19:51 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ typedef struct s_doors
 
 typedef struct s_data
 {
+	int			map_fd;
 	char		**map;
 	int			monitor_h;
 	int			monitor_w;
@@ -191,13 +192,11 @@ typedef struct s_data
 	t_weapon	weapon;
 }	t_data;
 
-void		launch_game(t_data *data);
-void		fill_rect(t_data *data, mlx_image_t *img, t_rect dim,
-				uint32_t color);
+void		helper_error_parsing(t_data *data, char *line, char **split,
+				char *str);
+void		launch_game(t_data *data);;
 int			line_len_no_nl(const char *s);
-void		count_tile_in_map(t_data *data);
 void		minimap_init(t_data *data);
-void		fill_circle(t_data *data, t_circle circle, uint32_t color);
 void		set_camera_plane(t_player *player);
 void		init_player(t_data *data);
 void		init_player_dir(t_data *data, int x, int y);
@@ -219,7 +218,7 @@ int			countline_bonus(char *file);
 int			is_map_line_bonus(char *line);
 
 int			parser(t_data *data, int argc, char **argv);
-int			check_duplicate(t_data *game, char *trimmed);
+int			check_duplicate(t_data *game, char *trimmed, char *line);
 int			is_valid_char_bonus(char c);
 int			is_valid_direction(char c);
 
@@ -236,7 +235,6 @@ int			is_close(t_data *game);
 int			check_holes(t_data *game);
 char		*whitespace(char *line);
 int			ft_strcmp(char *s1, char *s2);
-int			count_lines(char *map_path);
 int			init_textures(t_data *data);
 void		draw_textured_column(t_data *d, t_column *c);
 uint32_t	rgb_to_u32(int r, int g, int b);
@@ -289,7 +287,7 @@ void		weapon_init(t_data *d);
 void		weapon_draw(t_data *d, double dt);
 void		weapon_shoot(t_data *d);
 
-void		put_error_and_exit(char *str);
+void		put_error_and_exit(t_data *data, char *str);
 void		draw_background(t_data *data, mlx_image_t *img);
 
 #endif
