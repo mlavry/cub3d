@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 01:55:04 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/27 23:44:37 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/12 16:24:45 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,6 @@ void	init_player(t_data *data)
 				set_camera_plane(&data->player);
 				return ;
 			}
-			x++;
-		}
-		y++;
-	}
-}
-
-void	draw_background(t_data *data, mlx_image_t *img)
-{
-	int			y;
-	int			x;
-	uint32_t	color;
-
-	y = 0;
-	while (y < (int)img->height)
-	{
-		if (y < (int)img->height / 2)
-			color = rgb_to_u32(data->param.c_rgb[0], data->param.c_rgb[1],
-					data->param.c_rgb[2]);
-		else
-			color = rgb_to_u32(data->param.f_rgb[0], data->param.f_rgb[1],
-					data->param.f_rgb[2]);
-		x = 0;
-		while (x < (int)img->width)
-		{
-			mlx_put_pixel(img, x, y, color);
 			x++;
 		}
 		y++;

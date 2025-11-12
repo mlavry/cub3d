@@ -6,11 +6,25 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 21:20:08 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/05 21:32:20 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/12 16:19:29 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] != '\0' && s2[i] != '\0')
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	return (s1[i] - s2[i]);
+}
 
 int	line_len_no_nl(const char *s)
 {
@@ -22,27 +36,6 @@ int	line_len_no_nl(const char *s)
 	while (s[len] && s[len] != '\n' )
 		len++;
 	return (len);
-}
-
-void	count_tile_in_map(t_data *data)
-{
-	int	max_x;
-	int	y;
-	int	x;
-
-	y = 0;
-	max_x = 0;
-	x = 0;
-	while (y < data->tiles_y && data->map[y])
-	{
-		x = line_len_no_nl(data->map[y]);
-		if (x > max_x)
-			max_x = x;
-		y++;
-	}
-	data->tiles_x = max_x;
-	printf("Taille en x : %d\n", data->tiles_x);
-	printf("Taille en y : %d\n", data->tiles_y);
 }
 
 void	init_player_dir(t_data *data, int x, int y)

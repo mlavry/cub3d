@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 21:36:13 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/05 23:26:21 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/12 16:25:24 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,5 +288,8 @@ uint32_t	read_pixel_in_tex(mlx_texture_t *tex, int tx, int ty);
 void		weapon_init(t_data *d);
 void		weapon_draw(t_data *d, double dt);
 void		weapon_shoot(t_data *d);
+
+void		put_error_and_exit(char *str);
+void		draw_background(t_data *data, mlx_image_t *img);
 
 #endif

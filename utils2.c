@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 21:56:03 by mlavry            #+#    #+#             */
-/*   Updated: 2025/10/22 21:56:19 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/12 16:20:12 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,6 @@ void	set_camera_plane(t_player *player)
 	f = 0.66;
 	player->plane_x = -player->dir_y * f;
 	player->plane_y = player->dir_x * f;
-}
-
-void	print_player_info(t_data *data)
-{
-	printf("\n===== PLAYER DEBUG INFO =====\n");
-	printf("Position : (%.2f, %.2f)\n",
-		data->player.pos_x, data->player.pos_y);
-	printf("Direction : (%.2f, %.2f)\n",
-		data->player.dir_x, data->player.dir_y);
-	printf("Camera plane : (%.2f, %.2f)\n",
-		data->player.plane_x, data->player.plane_y);
-	printf("=============================\n\n");
 }
 
 void	dda_init_axis(double *delta, double dir)
