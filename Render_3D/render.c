@@ -6,12 +6,13 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 16:39:37 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 15:28:45 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/12 20:43:45 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+/*Calcule la direction du rayon pour chaque colone de pixel*/
 static void	compute_ray_dir(t_data *data, int x, double *rdx, double *rdy)
 {
 	double	camera_x;
@@ -21,6 +22,7 @@ static void	compute_ray_dir(t_data *data, int x, double *rdx, double *rdy)
 	*rdy = data->player.dir_y + data->player.plane_y * camera_x;
 }
 
+/*Transforme la distance d'un mur en hauteur de mur a afficher*/
 static void	project_column(t_data *data, double dist, int *y0, int *y1)
 {
 	int	line_h;
@@ -34,6 +36,7 @@ static void	project_column(t_data *data, double dist, int *y0, int *y1)
 	*y1 = line_h / 2 + mid;
 }
 
+/*Loop de rendu*/
 void	render_frame_basic(void *param)
 {
 	int			x;

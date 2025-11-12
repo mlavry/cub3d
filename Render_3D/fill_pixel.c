@@ -6,12 +6,13 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 00:17:14 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/12 16:24:57 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/12 20:38:54 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+/*Fonction pour convertir en u32*/
 uint32_t	rgb_to_u32(int r, int g, int b)
 {
 	if (r < 0)

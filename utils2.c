@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 21:56:03 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/12 16:20:12 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/12 20:21:16 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	map_at(t_data *data, int x, int y)
 	return (c);
 }
 
+/*Si f aungmente FOV plus large et inversement*/
 void	set_camera_plane(t_player *player)
 {
 	double	f;
@@ -37,6 +38,8 @@ void	set_camera_plane(t_player *player)
 	player->plane_y = player->dir_x * f;
 }
 
+/*delta représente la distance entre deux “lignes de grille” 
+successives traversées par un rayon.*/
 void	dda_init_axis(double *delta, double dir)
 {
 	if (dir == 0.0)
@@ -45,6 +48,7 @@ void	dda_init_axis(double *delta, double dir)
 		*delta = fabs(1.0 / dir);
 }
 
+/*Calcule le temps ecoules depuis le dernier appel a la fonction*/
 double	get_dt_seconds(t_data *data)
 {
 	struct timeval	tv;

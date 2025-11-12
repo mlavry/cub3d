@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 21:19:30 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/06 00:10:33 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/12 20:49:16 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ uint32_t	read_pixel_in_tex(mlx_texture_t *tex, int tx, int ty)
 		| ((uint32_t)r[i + 3]));
 }
 
+/*determine quelle bande verticake du mur on doit afficher
+pour cette colone de pixel*/
 static mlx_texture_t	*col_prepare(t_data *data, t_column *c, int *tex_x)
 {
 	mlx_texture_t	*tex;
@@ -60,6 +62,8 @@ static mlx_texture_t	*col_prepare(t_data *data, t_column *c, int *tex_x)
 	return (tex);
 }
 
+/*ffiche la bande verticale du mur à l’écran, en la texturant correctement
+selon la distance et la hauteur calculée précédemment*/
 void	col_blit(t_data *d, t_column *c, mlx_texture_t *tex, int tex_x)
 {
 	double	step;

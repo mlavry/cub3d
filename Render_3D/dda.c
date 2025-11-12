@@ -6,7 +6,7 @@
 /*   By: mlavry <mlavry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 20:10:24 by mlavry            #+#    #+#             */
-/*   Updated: 2025/11/04 01:34:18 by mlavry           ###   ########.fr       */
+/*   Updated: 2025/11/12 20:36:48 by mlavry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	dda_init(t_data *data, t_dda *a, double rdx, double rdy)
 	dda_init_axis(&a->ddy, rdy);
 }
 
+/*setpx et stepy est ce que on va aavence en x(g/d) ou en y(h/b)
+sdx/sdy(a quelle distance se trouve la premiere ligne de grille en x et y)*/
 static void	dda_setup_steps(t_data *data, t_dda *a, double rdx, double rdy)
 {
 	t_player	*p;
@@ -50,6 +52,7 @@ static void	dda_setup_steps(t_data *data, t_dda *a, double rdx, double rdy)
 	}
 }
 
+/*Permet de trouver la premiere case contenant un mur en simulant un rayon*/
 static void	dda_walk(t_data *data, t_dda *a, int *side_hit)
 {
 	while (1)
@@ -71,6 +74,9 @@ static void	dda_walk(t_data *data, t_dda *a, int *side_hit)
 	}
 }
 
+/*calcule la distance perpendiculaire entre le joueur 
+et le mur que le rayon vient de frapper. et ensuite calculer la hauteur 
+de la colone a afficher*/
 static double	dda_perp_dist(t_data *d, t_dda *a,
 	t_dpoint ray_dir, int side_hit)
 {
@@ -94,6 +100,8 @@ static double	dda_perp_dist(t_data *d, t_dda *a,
 	return (num / den);
 }
 
+/*La distance perpendiculaire entre le joueur
+et le premier mur touché par ce rayon*/
 double	dda_first_hit(t_data *data, double rdx, double rdy, int *side_hit)
 {
 	t_dda		a;
